@@ -1,4 +1,4 @@
-site_name: 2025 计算机网络实验文档
+site_name: 2026 计算机网络实验文档
 
 theme:
   name: material
@@ -7,11 +7,6 @@ theme:
 nav:
   - 主页: index.md
   - Lab1: lab1.md
-  - Lab2: lab2.md
-  - Lab3: lab3.md
-  - Lab4: lab4.md
-  - Lab5: lab5.md
-  - Lab6: lab6.md
 
 markdown_extensions:
   - attr_list
