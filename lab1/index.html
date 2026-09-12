@@ -1,0 +1,787 @@
+<!DOCTYPE html><html lang="zh" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Lab1 - 2026 计算机网络实验文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab1-wireshark" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="2026 计算机网络实验文档" class="md-header__button md-logo" aria-label="2026 计算机网络实验文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            2026 计算机网络实验文档
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="2026 计算机网络实验文档" class="md-nav__button md-logo" aria-label="2026 计算机网络实验文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    2026 计算机网络实验文档
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    主页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab1
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#1-wireshark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 WireShark 软件初探
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 WireShark 软件初探">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 安装
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 选择网络
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 抓包
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 过滤器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 你的任务
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 常见网络命令的使用
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 常见网络命令的使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 你的任务
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#1-wireshark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 WireShark 软件初探
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 WireShark 软件初探">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 安装
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 选择网络
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 抓包
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 过滤器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 你的任务
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 常见网络命令的使用
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 常见网络命令的使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 你的任务
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="lab1-wireshark">Lab1 WireShark软件初探和常见网络命令的使用</h1>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>实验报告提交 DDL 为 2026 年 9 月 27 日 23:59，请同学们留意。</p>
+</div>
+<h2 id="1-wireshark">1 WireShark 软件初探</h2>
+<p>Wireshark 是一款开源免费的网络协议分析工具，可以捕获并解析网络传输中的数据包，帮助用户直观地观察和研究各种协议的交互过程，常用于网络故障排查、学习协议原理以及安全分析等多种场景。</p>
+<p>本次实验需要我们使用 WireShark 对网络数据进行抓包与分析，通过观察数据包的传输过程和协议内容，加深对网络通信机制的理解，同时熟悉 WireShark 工具的操作流程。</p>
+<h3 id="11">1.1 安装</h3>
+<p>Wireshark 软件可通过 <a href="https://www.wireshark.org/download.html">官方链接</a> 下载，
+根据自己的操作系统选择对应的安装包即可。</p>
+<p>在较新版 WireShark 的安装过程中，保持默认勾选安装即可。
+如果你选择某些旧版本安装，请务必勾选 <code>Install Npcap</code>。</p>
+<div class="admonition quote">
+<p>新版 WireShark 会默认安装，所以不会有勾选提示。</p>
+</div>
+<div style="display: flex; gap: 1em;">
+    <div style="flex: 1; text-align: center;">
+        <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab1/download.png" data-desc-position="bottom"><img src="../assets/lab1/download.png"></a>
+    </div>
+    <div style="flex: 1; text-align: center;">
+        <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab1/npcap.png" data-desc-position="bottom"><img src="../assets/lab1/npcap.png"></a>
+    </div>
+</div>
+
+<h3 id="12">1.2 选择网络</h3>
+<p>打开 WireShark 后，界面会出现监测到的系统端口，选择其中一个端口就可以监测该端口的数据包流量。</p>
+<p>或者也可以选择上方工具栏 <strong>捕获→选项</strong> 进行选择。</p>
+<div style="display: flex; gap: 1em;">
+    <div style="flex: 1; text-align: center;">
+        <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab1/interface.png" data-desc-position="bottom"><img src="../assets/lab1/interface.png"></a>
+    </div>
+    <div style="flex: 1; text-align: center;">
+        <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab1/interface2.png" data-desc-position="bottom"><img src="../assets/lab1/interface2.png"></a>
+    </div>
+</div>
+
+<h3 id="13">1.3 抓包</h3>
+<p>选定某一个端口进入后，抓包会自动进行。（请选择有流量的端口）。抓包界面如下：</p>
+<div style="text-align:center">
+    <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab1/capture.png" data-desc-position="bottom"><img src="../assets/lab1/capture.png" style="width:70%"></a>
+</div>
+
+<p>在选择某一个包后可以在下方信息栏中查看具体信息</p>
+<div style="text-align:center">
+    <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab1/capture2.png" data-desc-position="bottom"><img src="../assets/lab1/capture2.png" style="width:70%"></a>
+</div>
+
+<h3 id="14">1.4 过滤器</h3>
+<p>WireShark 中过滤器主要有两种：<strong>显示过滤器</strong>和<strong>捕获过滤器</strong>。</p>
+<p>他们主要功能都是筛选出符合条件的包，筛选条件可以是协议、地址等，也可以是它们的组合方式，善用过滤器可以快速帮助我们筛选想要的包。二者的功能差距请各位同学自行探索（思考题之一）。</p>
+<div style="display: flex; gap: 1em;">
+    <div style="flex: 1; text-align: center;">
+        <div>
+            <p> <b>显示过滤器</b>在选择端口进入之后，抓包界面的正上方
+        </p></div>
+        <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab1/show_filter.png" data-desc-position="bottom"><img src="../assets/lab1/show_filter.png"></a>
+    </div>
+    <div style="flex: 1; text-align: center;">
+        <div>
+            <p> <b>捕获过滤器</b>在上方工具栏 捕获→选项 选择端口界面的正下方
+        </p></div>
+        <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab1/capture_filter.png" data-desc-position="bottom"><img src="../assets/lab1/capture_filter.png"></a>
+    </div>
+</div>
+
+<h3 id="15">1.5 你的任务</h3>
+<ul>
+<li>你需要安装并熟悉 WireShark 的使用，可参照上方 WireShark 介绍，</li>
+<li>操作过程、结果等需要截图保存，具体要求见实验报告模板。</li>
+</ul>
+<h2 id="2">2 常见网络命令的使用</h2>
+<p>本次实验我们还需实际操作并熟悉一些常见的网络命令。理解其功能和应用场景，包括网络连接测试、路由查看、端口检查等，增强网络故障排查能力。</p>
+<p>在 windows 系统中我们一般在 <code>cmd</code> 或 <code>powershell</code> 执行命令，可以键入 <code>win + R</code> 再输入 <code>cmd</code> 或 <code>powershell</code> 打开终端。</p>
+<p>我们需要使用的命令主要包含以下 11 个（命令名称10个，具体命令11个）：</p>
+<table>
+<thead>
+<tr>
+<th>命令名称</th>
+<th>功能说明</th>
+<th>命令示例</th>
+<th>图片示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ping</td>
+<td>用于测试到特定地址的连通性、数据包的延迟时间</td>
+<td><code>ping xxx</code></td>
+<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab1/ping.png" data-desc-position="bottom"><img alt="" src="../assets/lab1/ping.png"></a></td>
+</tr>
+<tr>
+<td>ipconfig</td>
+<td>查看本机的网卡物理地址、IP地址<br>查看本机默认网关、DNS服务器地址</td>
+<td><code>ipconfig/all</code></td>
+<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab1/ipconfig.png" data-desc-position="bottom"><img alt="" src="../assets/lab1/ipconfig.png"></a></td>
+</tr>
+<tr>
+<td>arp</td>
+<td>显示本机记录的局域网内其它机器IP地址与其物理地址的对照表</td>
+<td><code>arp -a</code></td>
+<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab1/arp.png" data-desc-position="bottom"><img alt="" src="../assets/lab1/arp.png"></a></td>
+</tr>
+<tr>
+<td>tracert</td>
+<td>显示从本机到达一个特定地址的路由过程</td>
+<td><code>tracert xxx</code></td>
+<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab1/tracert.png" data-desc-position="bottom"><img alt="" src="../assets/lab1/tracert.png"></a></td>
+</tr>
+<tr>
+<td>nslookup</td>
+<td>显示某一个域名的 IP 地址</td>
+<td><code>nslookup xxx</code></td>
+<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab1/nslookup.png" data-desc-position="bottom"><img alt="" src="../assets/lab1/nslookup.png"></a></td>
+</tr>
+<tr>
+<td>nbtstat</td>
+<td>显示本机 NetBIOS 名称表</td>
+<td><code>nbtstat -n</code></td>
+<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab1/nbtstat.png" data-desc-position="bottom"><img alt="" src="../assets/lab1/nbtstat.png"></a></td>
+</tr>
+<tr>
+<td>route</td>
+<td>显示本机的路由表信息 &amp;<br>并手工添加一个路由</td>
+<td><code>route print</code> &amp;<br> <code>route add xxx mask mmm yyy</code></td>
+<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab1/route.png" data-desc-position="bottom"><img alt="" src="../assets/lab1/route.png"></a></td>
+</tr>
+<tr>
+<td>netstat</td>
+<td>显示已经与本机建立TCP连接的端口、IP地址、连接状态等信息</td>
+<td><code>netstat -n</code></td>
+<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab1/netstat.png" data-desc-position="bottom"><img alt="" src="../assets/lab1/netstat.png"></a></td>
+</tr>
+<tr>
+<td>NET SHARE</td>
+<td>显示局域网范围内某台机器的共享资源</td>
+<td><code>NET SHARE</code></td>
+<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab1/NET.png" data-desc-position="bottom"><img alt="" src="../assets/lab1/NET.png"></a></td>
+</tr>
+<tr>
+<td>telnet</td>
+<td>连接WEB服务器的端口获得该网站的主页内容</td>
+<td><code>telnet xxx</code><br><code>GET / HTTP/1.1</code><br><code>HOST:xxx</code></td>
+<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab1/telnet.png" data-desc-position="bottom"><img alt="" src="../assets/lab1/telnet.png"></a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="21">2.1 你的任务</h3>
+<ol>
+<li>运行以上表格中所有的命令示例（ 11 个功能，route 相关命令有两个需要运行）。</li>
+<li>观察使用 <code>ping</code>, <code>tracert</code>, <code>nslookup</code>, <code>telnet</code> 指令时 WireShark 中出现的数据包并捕获，观察他们的协议类型。</li>
+<li>观察哪些命令使用时会有数据包产生，并探索原因。</li>
+<li>探索 <code>ping</code> 命令会发送怎样的数据包，何时会出现 ARP 信息。探索 <code>ping</code> 域名和 <code>ping</code> IP 地址时，二者产生的数据包有何不同。</li>
+<li>详细任务内容可在实验报告模板中查看，实验结果截图放在最终实验报告中提交。</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">提示 &amp; 要求</p>
+<ul>
+<li>示例中出现的 <code>xxx</code> 表示某个域名/IP地址，可任意选择，尽可能选择同图片示例不同的内容。<code>mmm</code> 表示子网掩码，<code>yyy</code> 表示网关。</li>
+<li>使用 <code>route add</code> 添加 IP 路由时，请把后两组数字改成你的学号后四位，前两组随意。例如，张三学号 3230109999，则应添加的 IP 地址为 xx.xx.99.99。</li>
+<li>在使用 <code>route add</code> 指令添加完路由后，请用 <code>route print</code> 指令重新打印一遍本机并指出你添加的路由位置。</li>
+<li>在使用 WireShark 观察命令发送的数据包时（你的任务2.1.2），若后台运行了浏览器或其他联网程序，WireShark 中抓的包会非常多，此时会影响我们判断哪些包是我们输入的命令所产生的。因此，我们建议：<ol>
+<li>尝试关掉后台应用，包的数量会减少很多</li>
+<li>在选择 IP 地址的时候，选择特异性的 IP 地址。例如 <code>ping 8.8.8.8</code>，此时抓到的包目的/源地址就是这个。
+    你也可以搜寻其他的一些公共 DNS 或公共 IP，这可以保证你的电脑一定能连通。
+    而由于指令功能不同，不一定所有指令产生包的源/目的地址都是你输入的地址，请大家自行探索。</li>
+<li>在包的具体信息栏目中有些会带上这个包的来源指令，如 <code>ping</code>，你可以用这个判断哪些包是你的指令产生的。</li>
+</ol>
+</li>
+</ul>
+</div>
+<div class="admonition quote">
+<p>以上命令也存在其他参数，-n -r 等以实现不同功能，大家可以自行探索更多用途。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<ul>
+<li><code>route add</code> 操作可能会报错：“请求时操作需要提升”，需要以管理员身份打开 <code>cmd</code> 或 <code>powershell</code>。</li>
+<li>部分电脑输入 <code>telnet</code> 指令成功连接后会进入黑色窗口，此时输入键盘可能并不会显示在终端上，但后台仍然在读入。可以盲打指令进行下一步操作，输入完成后需要键入两次回车才算完毕。</li>
+<li>使用 <code>telnet</code> 连接后，注意第二句命令 <code>GET / HTTP/1.1</code> 中 <code>/</code> 附近的空格，第一个有空格第二个没有。</li>
+<li>在执行 <code>telnet</code> 指令时可能遇见类似报错：“telnet不是内部指令”，可参考<a href="https://blog.csdn.net/qq_36292543/article/details/119645130">win10 telnet不是内部或外部命令（已解决）</a></li>
+<li>若出现类似报错：“23端口连接失败”，可以在切换其他端口（如80等）重试。在命令 <code>telnet xxx</code> 后加上端口号即可，即 <code>telnet xxx yy</code>，yy指端口号。
+  若仍不行，可考虑下载 telnetSetup.exe 重启：<a href="https://blog.csdn.net/qq_43779149/article/details/119141334">win10 Telnet服务器 解决telnet正在连接127.0.0.1...无法打开到主机的连接 在端口 23: 连接失败</a></li>
+<li>若仍无法连接，可考虑：<a href="https://blog.csdn.net/alicee_2012/article/details/123128099">Telnet访问百度www.baidu.com_alicee_2012的博客-CSDN博客_telnet 百度</a></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

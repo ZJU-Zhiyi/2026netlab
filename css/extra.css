@@ -1,0 +1,25 @@
+.admonition.quote {
+    border-left: 4px solid #999999; /* 左侧粗边颜色 */
+    background-color: #f8f8f8;      /* 可选背景色 */
+    color: #a09c9c;
+    font-size: 1em;
+}
+
+
+h1 {
+    font-weight: bold !important;
+}
+
+h2 {
+    font-weight: 500 !important;
+}
+
+.md-typeset ul ul {
+    list-style-type: circle;
+}
+
+table img {
+    height: 50px !important;          /* 高度自适应 */
+    width: auto;          /* 图片宽度 */
+    object-fit: contain;   /* 保持比例，不拉伸 */
+}
