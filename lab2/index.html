@@ -71,7 +71,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lab2-webget-bytestream" class="md-skip">
+        <a href="#lab-2-webget-bytestream" class="md-skip">
           跳转至
         </a>
       
@@ -332,7 +332,7 @@
   <a href="#11-virtualbox" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.1 安装VirtualBox虚拟机并下载虚拟机镜像
+        1.1 安装 VirtualBox 并下载虚拟机镜像
       
     </span>
   </a>
@@ -343,7 +343,7 @@
   <a href="#12-cs144" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.2 导入CS144镜像
+        1.2 导入 CS144 镜像
       
     </span>
   </a>
@@ -354,7 +354,7 @@
   <a href="#13" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.3 连接你的虚拟机
+        1.3 连接虚拟机
       
     </span>
   </a>
@@ -365,7 +365,7 @@
   <a href="#14" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.4 安装所需的包
+        1.4 安装所需软件包
       
     </span>
   </a>
@@ -393,7 +393,7 @@
   <a href="#21" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.1 浏览器访问一个网页
+        2.1 使用浏览器访问网页
       
     </span>
   </a>
@@ -404,7 +404,7 @@
   <a href="#22-telnet" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.2 利用telnet抓取一个网页
+        2.2 使用 Telnet 获取网页
       
     </span>
   </a>
@@ -527,7 +527,7 @@
   <a href="#11-virtualbox" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.1 安装VirtualBox虚拟机并下载虚拟机镜像
+        1.1 安装 VirtualBox 并下载虚拟机镜像
       
     </span>
   </a>
@@ -538,7 +538,7 @@
   <a href="#12-cs144" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.2 导入CS144镜像
+        1.2 导入 CS144 镜像
       
     </span>
   </a>
@@ -549,7 +549,7 @@
   <a href="#13" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.3 连接你的虚拟机
+        1.3 连接虚拟机
       
     </span>
   </a>
@@ -560,7 +560,7 @@
   <a href="#14" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.4 安装所需的包
+        1.4 安装所需软件包
       
     </span>
   </a>
@@ -588,7 +588,7 @@
   <a href="#21" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.1 浏览器访问一个网页
+        2.1 使用浏览器访问网页
       
     </span>
   </a>
@@ -599,7 +599,7 @@
   <a href="#22-telnet" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.2 利用telnet抓取一个网页
+        2.2 使用 Telnet 获取网页
       
     </span>
   </a>
@@ -689,7 +689,7 @@
 
 
 
-<h1 id="lab2-webget-bytestream">Lab2 Webget 与字节流（ByteStream）</h1>
+<h1 id="lab-2-webget-bytestream">Lab 2 Webget 与字节流（ByteStream）</h1>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
 <p>实验报告提交 DDL 为 2026 年 10 月 11 日 23:59，请同学们留意。</p>
@@ -697,66 +697,66 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">说明</p>
-<p>Lab2-5与CS144的实验内容对齐，我们将实现一个完整的TCP/IP协议栈。</p>
+<p>Lab 2–5 的实验内容与 CS144 对齐，我们将在这些实验中实现一个完整的 TCP/IP 协议栈。</p>
 </div>
 <h2 id="1">1 环境配置</h2>
-<p>为了避免不必要的问题，我们推荐你使用虚拟机和CS144官方提供的镜像完成实验。</p>
-<h3 id="11-virtualbox">1.1 安装VirtualBox虚拟机并下载虚拟机镜像</h3>
+<p>为避免不必要的环境问题，建议使用虚拟机，并基于 CS144 官方提供的镜像完成实验。</p>
+<h3 id="11-virtualbox">1.1 安装 VirtualBox 并下载虚拟机镜像</h3>
 <p>VirtualBox：<a href="https://www.oracle.com/cn/virtualization/virtualbox/">https://www.oracle.com/cn/virtualization/virtualbox/</a></p>
-<p>虚拟机镜像：<a href="https://stanford.edu/class/cs144/vm_files/cs144-fall-2026-x86.ova">https://stanford.edu/class/cs144/vm_files/cs144-fall-2026-x86.ova</a> （很大的文件，建议预留1-2小时下载）</p>
+<p>虚拟机镜像：<a href="https://stanford.edu/class/cs144/vm_files/cs144-fall-2026-x86.ova">https://stanford.edu/class/cs144/vm_files/cs144-fall-2026-x86.ova</a>（文件较大，建议预留 1～2 小时下载）</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab2/virtualbox-download.png" data-desc-position="bottom"><img src="../assets/lab2/virtualbox-download.png" alt="virtualbox-download" style="zoom:45%;"></a></p>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
-<p>如果你有一台2020-24的MacBook（带有ARM64M1芯片），VirtualBox可能将无法成功运行，请按照课程官方建议使用 UTM 和 ARM64 虚拟机镜像。</p>
+<p>如果你使用配备 Apple Silicon（M 系列芯片）的 MacBook，VirtualBox 可能无法正常运行。请按照课程官方建议，使用 UTM 和 ARM64 虚拟机镜像。</p>
 <p>UTM：<a href="https://mac.getutm.app/">https://mac.getutm.app/</a></p>
-<p>ARM64虚拟机镜像：<a href="https://web.stanford.edu/class/cs144/vm_files/cs144-2026-arm.utm.tar.gz">https://web.stanford.edu/class/cs144/vm_files/cs144-2026-arm.utm.tar.gz</a></p>
+<p>ARM64 虚拟机镜像：<a href="https://web.stanford.edu/class/cs144/vm_files/cs144-2026-arm.utm.tar.gz">https://web.stanford.edu/class/cs144/vm_files/cs144-2026-arm.utm.tar.gz</a></p>
 </div>
-<h3 id="12-cs144">1.2 导入CS144镜像</h3>
-<p>启动 <strong>VirtualBox</strong> ，你会看到如下界面：</p>
+<h3 id="12-cs144">1.2 导入 CS144 镜像</h3>
+<p>启动 <strong>VirtualBox</strong>，你会看到如下界面：</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab2/init.png" data-desc-position="bottom"><img src="../assets/lab2/init.png" alt="init" style="zoom:49%;"></a></p>
-<p>点击“导入”，打开如下窗口。输入或选择你的 <strong>cs144_vm.ova</strong> 镜像文件。默认设置不需要改变，点击“完成”导入镜像。</p>
+<p>单击“导入”，打开如下窗口。选择已经下载的 <strong>cs144_vm.ova</strong> 镜像文件。无需修改默认设置，单击“完成”导入镜像。</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab2/image.png" data-desc-position="bottom"><img src="../assets/lab2/image.png" alt="image" style="zoom:70%;"></a></p>
-<p>在左侧选择刚刚导入的虚拟机，点击启动。</p>
+<p>在左侧选择刚刚导入的虚拟机，然后单击“启动”。</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab2/launch.png" data-desc-position="bottom"><img src="../assets/lab2/launch.png" alt="launch" style="zoom:46%;"></a></p>
-<p>虚拟机将启动到文本界面，你的用户名是 cs144，默认密码也是 cs144。</p>
-<h3 id="13">1.3 连接你的虚拟机</h3>
-<p>我们推荐你使用 <strong>ssh</strong> 连接你的虚拟机，你可以将你的虚拟机使用 ssh 集成在 vscode 来进行编辑。虚拟机镜像已设置后，VirtualBox 会将主机上 localhost:2222 的 TCP 连接转发到虚拟机的 22 号端口 (ssh)。虚拟机运行时，你可以按如下方式连接：（如果你在配置ssh时出现问题，可以参考一下文档末尾的注意事项，可能会帮到你）</p>
+<p>虚拟机会启动至文本界面，用户名和默认密码均为 <code>cs144</code>。</p>
+<h3 id="13">1.3 连接虚拟机</h3>
+<p>建议通过 <strong>SSH</strong> 连接虚拟机，并使用 VS Code 进行远程编辑。CS144 镜像已经配置端口转发：主机的 <code>localhost:2222</code> 会被转发到虚拟机的 22 号端口（SSH）。虚拟机启动后，可运行以下命令连接。若连接失败，请参考文末的注意事项。</p>
 <div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-p<span class="w"> </span><span class="m">2222</span><span class="w"> </span>cs144@localhost
 </code></pre></div>
-<h3 id="14">1.4 安装所需的包</h3>
-<p>下面这些命令会安装实验中需要用到的包：</p>
+<h3 id="14">1.4 安装所需软件包</h3>
+<p>以下命令将安装实验所需的软件包：</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>cmake<span class="w"> </span>gdb<span class="w"> </span>build-essential<span class="w"> </span>clang<span class="w"> </span><span class="se">\</span>
 clang-tidy<span class="w"> </span>clang-format<span class="w"> </span>gcc-doc<span class="w"> </span>pkg-config<span class="w"> </span>glibc-doc<span class="w"> </span>tcpdump<span class="w"> </span>tshark<span class="w"> </span>libpcap-dev
 </code></pre></div>
 <h2 id="2">2 使用网络</h2>
-<p>在正式进行编码工作之前，我们首先使用应用层程序访问一个网页。</p>
-<h3 id="21">2.1 浏览器访问一个网页</h3>
-<p>在一个浏览器中，访问  <a href="http://cs144.keithw.org/hello">http://cs144.keithw.org/hello</a> ，你将会看到如下的结果。浏览器是典型的应用层程序，它会帮你构造符合 <strong>HTTP</strong> 协议的请求，发给服务器，然后把响应解析渲染成网页。
+<p>在开始编码之前，我们先使用应用层程序访问一个网页。</p>
+<h3 id="21">2.1 使用浏览器访问网页</h3>
+<p>使用浏览器访问 <a href="http://cs144.keithw.org/hello">http://cs144.keithw.org/hello</a>，你将看到如下结果。浏览器是典型的应用层程序，它会构造符合 <strong>HTTP</strong> 协议的请求并发送给服务器，再解析并呈现服务器返回的响应。
 <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab2/hello.png" data-desc-position="bottom"><img src="../assets/lab2/hello.png" alt="hello" style="border:1px solid black;"></a></p>
-<h3 id="22-telnet">2.2 利用telnet抓取一个网页</h3>
-<p><strong>Telnet</strong> 也是应用层程序，只不过当你使用 telnet 连接到服务器时，需要手动输入 HTTP 报文。</p>
+<h3 id="22-telnet">2.2 使用 Telnet 获取网页</h3>
+<p><strong>Telnet</strong> 也是一种应用层程序。与浏览器不同，使用 Telnet 连接服务器时，需要手动输入 HTTP 请求报文。</p>
 <ol>
 <li>
-<p>在你的虚拟机中运行 <code>telnet cs144.keithw.org http [Enter]</code> 命令。它告诉 telnet 程序在你的计算机与另一台计算机（名为<strong>cs144.keithw.org</strong> ）之间打开一个可靠的字节流，并在这台计算机运行一个特定的服务：“http”服务。如果你的虚拟机已经被正确设置且连接网络，你将会看到
+<p>在虚拟机中运行 <code>telnet cs144.keithw.org http [Enter]</code>。该命令会通过 HTTP 服务端口与 <code>cs144.keithw.org</code> 建立可靠的字节流连接。如果虚拟机配置正确且网络连接正常，你将看到以下输出：
 </p><div class="highlight"><pre><span></span><code>$ telnet cs144.keithw.org http
 Trying 104.196.238.229...
 Connected to cs144.keithw.org.
 Escape character is '^]'.
 </code></pre></div>
-按住 <code>Ctrl</code> 并按下 <code>]</code>，接着输入 <code>close</code> 退出。<p></p>
+按住 <code>Ctrl</code> 并按下 <code>]</code>，然后输入 <code>close</code> 退出连接。<p></p>
 </li>
 <li>
-<p>输入 <code>GET /hello HTTP/1.1 [Enter]</code> ，这告诉服务器URL的路径部分。</p>
+<p>输入 <code>GET /hello HTTP/1.1 [Enter]</code>，指定请求的 URL 路径。</p>
 </li>
-<li>输入 <code>Host: cs144.keithw.org [Enter]</code> ，这告诉服务器URL的主机部分。</li>
-<li>输入 <code>Connection: close [Enter]</code> ，这告诉服务器你已经完成了请求，服务器将在回应后断开连接。</li>
-<li>多输入一次 <code>[Enter]</code> ，发送一个空行并告知服务器你已经完成了输入。</li>
+<li>输入 <code>Host: cs144.keithw.org [Enter]</code>，指定请求的主机。</li>
+<li>输入 <code>Connection: close [Enter]</code>，告知服务器在响应后关闭连接。</li>
+<li>再按一次 <code>[Enter]</code>，发送一个空行以结束请求头。</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
-<p>输入这几条指令时一定要快，不然连接会断掉。</p>
+<p>输入上述内容时请尽量迅速，否则连接可能因超时而断开。</p>
 </div>
-<p>输入成功后，你将会看到与浏览器展示的结果相同的回复。</p>
+<p>操作成功后，你将看到与浏览器所显示内容相同的响应。</p>
 <div class="highlight"><pre><span></span><code>GET /hello HTTP/1.1
 Host: cs144.keithw.org
 Connection: close
@@ -775,100 +775,86 @@ Hello, CS144!
 Connection closed by foreign host.
 </code></pre></div>
 <h2 id="3-webget">3 Webget</h2>
-<p>如果你继续探索上述两个应用层程序，你会发现它们都建立在 <strong>socket</strong> 之上。Socket（套接字），是传输层提供给应用层的接口，对于应用层而言，是对TCP/UDP这些传输层协议的抽象封装。应用层程序通过 socket 建立连接，发送和接收数据。在这一章中，你将编写一个简短的应用层程序：<strong>webget</strong>，调用Linux内核提供的 <strong>stream socket</strong> 类来实现。</p>
+<p>对比上述两个应用层程序可以发现，它们都建立在 <strong>socket</strong> 之上。Socket（套接字）是操作系统向应用程序提供的网络通信接口，它对 TCP、UDP 等传输层协议进行了抽象封装。应用程序通过 socket 建立连接并收发数据。本节将编写一个简短的应用层程序 <strong>webget</strong>，通过 Linux 内核提供的 <strong>stream socket</strong> 接口获取网页内容。</p>
 <h3 id="31">3.1 建立仓库</h3>
 <ol>
-<li>在你的虚拟机上，输入 <code>git clone https://github.com/ZJU-Zhiyi/zju-comnet-labs-2026.git [Enter]</code> 来抓取项目初始代码文件。</li>
+<li>在虚拟机中输入 <code>git clone https://github.com/ZJU-Zhiyi/zju-comnet-labs-2026.git [Enter]</code>，克隆实验初始代码。</li>
 <li>输入 <code>cd zju-comnet-labs-2026 [Enter]</code> 进入项目目录。</li>
-<li>输入 <code>mkdir build [Enter]</code> 构建 build 目录。</li>
-<li>输入 <code>cd build [Enter]</code> 进入 build 目录。</li>
-<li>输入 <code>cmake .. [Enter]</code> 搭建系统。</li>
-<li>输入 <code>make [Enter]</code> 命令编译源代码。（这里注意你每次对项目进行了修改都需要重新运行 <code>make</code> 命令）</li>
+<li>输入 <code>mkdir build [Enter]</code> 创建 <code>build</code> 目录。</li>
+<li>输入 <code>cd build [Enter]</code> 进入 <code>build</code> 目录。</li>
+<li>输入 <code>cmake .. [Enter]</code> 配置项目。</li>
+<li>输入 <code>make [Enter]</code> 编译项目。每次修改代码后，都需要重新运行 <code>make</code>。</li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">提示</p>
-<p>由于http连接github时常不稳定，我们推荐使用ssh来管理你的git仓库，可参考 <a href="https://zhuanlan.zhihu.com/p/628727065">https://zhuanlan.zhihu.com/p/628727065</a></p>
+<p>由于通过 HTTPS 访问 GitHub 时可能不稳定，建议使用 SSH 管理 Git 仓库。配置方法可参考 <a href="https://zhuanlan.zhihu.com/p/628727065">https://zhuanlan.zhihu.com/p/628727065</a>。</p>
 </div>
 <h3 id="32-os-stream-socket">3.2 OS Stream Socket</h3>
-<p>Linux内核提供了  <strong>stream socket</strong> ，它像一种文件描述符。当两个 stream socket 连在一起时，写入其中一个socket的字节最终将被另一个socket以相同的顺序读出。下图描述的是基于TCP/IP协议的 Client-Server 通信流程。</p>
+<p>在 Linux 中，<strong>stream socket</strong> 以文件描述符的形式供程序使用。两个 stream socket 建立连接后，写入一端的字节最终会按相同顺序从另一端读出。下图展示了基于 TCP/IP 协议的客户端—服务器通信流程。</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab2/socket.png" data-desc-position="bottom"><img src="../assets/lab2/socket.png" alt="socket" style="zoom:45%;"></a></p>
 <ul>
 <li>
-<p>服务器端是等待连接并提供服务的程序</p>
+<p>服务器端负责等待连接并提供服务：</p>
 <ul>
-<li>
-<p>socket: 创建一个套接字，这是网络通信的端点</p>
-</li>
-<li>
-<p>bind: 将套接字和一个本地地址（IP地址和端口号）绑定</p>
-</li>
-<li>
-<p>listen: 使套接字进入监听状态，等待客户端的连接请求</p>
-</li>
-<li>
-<p>accept: 阻塞等待客户端连接。一旦接收到一个连接请求，它会创建一个新的套接字来处理这个客户端的通信</p>
-</li>
-<li>
-<p>while(true): 表示服务器通常会进入一个<strong>循环</strong>，不断地调用 <code>accept</code> 来等待并处理新的客户端连接</p>
-</li>
-<li>
-<p>read/write: 与已连接的客户端进行<strong>数据读取和写入</strong>的通信</p>
-</li>
-<li>
-<p>close: 关闭与当前客户端通信的套接字</p>
-</li>
+<li><code>socket</code>：创建套接字，即网络通信的端点。</li>
+<li><code>bind</code>：将套接字绑定到本地地址（IP 地址和端口号）。</li>
+<li><code>listen</code>：使套接字进入监听状态，等待客户端的连接请求。</li>
+<li><code>accept</code>：阻塞并等待客户端连接。收到连接请求后，创建一个新的套接字与该客户端通信。</li>
+<li><code>while (true)</code>：服务器通常会循环调用 <code>accept</code>，持续等待并处理新的客户端连接。</li>
+<li><code>read</code>/<code>write</code>：通过已经连接的套接字收发数据。</li>
+<li><code>close</code>：关闭与当前客户端通信的套接字。</li>
 </ul>
 </li>
 <li>
-<p>客户端是发起连接并请求服务的程序</p>
+<p>客户端负责发起连接并请求服务：</p>
 <ul>
-<li>socket: 创建一个套接字</li>
-<li>connect: 向服务器端的特定地址和端口<strong>发起连接</strong>。一旦连接成功，就可以开始数据传输</li>
-<li>write/read: 通过已建立的连接向服务器<strong>发送数据（write）和从服务器接收数据（read）</strong></li>
-<li>read EOF: 客户端读取到<strong>文件结束符</strong>，表明服务器关闭了连接或关闭了写入端</li>
-<li>close: 关闭套接字，终止与服务器的连接</li>
+<li><code>socket</code>：创建套接字。</li>
+<li><code>connect</code>：向服务器的指定地址和端口发起连接。连接成功后，即可开始传输数据。</li>
+<li><code>write</code>/<code>read</code>：通过已经建立的连接向服务器发送数据，或读取服务器返回的数据。</li>
+<li><code>read EOF</code>：客户端读取到文件结束标志，表示服务器已经关闭连接或关闭写入方向。</li>
+<li><code>close</code>：关闭套接字，终止与服务器的连接。</li>
 </ul>
 </li>
 </ul>
-<h3 id="33-webget">3.3 实现 <strong>webget</strong></h3>
-<p>请阅读 <code>libsponge/util/socket.hh</code> 和 <code>libsponge/util/file_descriptor.hh</code> 的 public interfaces（请注意 <strong>Socket</strong> 继承于 <strong>FileDescriptor</strong>，<strong>TCPSocket</strong> 继承于 <strong>Socket</strong> ） 。熟悉 socket 各接口的定义以及如何调用。</p>
-<p>现在我们要调用 TCPSocket 的接口来实现 webget 这个应用层程序 ，就像前面的 <code>telnet</code> 一样用于抓取网页。</p>
+<h3 id="33-webget">3.3 实现 webget</h3>
+<p>请阅读 <code>libsponge/util/socket.hh</code> 和 <code>libsponge/util/file_descriptor.hh</code> 中的公开接口。注意，<code>Socket</code> 继承自 <code>FileDescriptor</code>，<code>TCPSocket</code> 继承自 <code>Socket</code>。请熟悉这些接口的定义和调用方法。</p>
+<p>接下来，你将调用 <code>TCPSocket</code> 的接口实现应用层程序 <code>webget</code>。其功能与前面的 Telnet 类似，用于获取网页内容。</p>
 <ol>
 <li>
-<p>在编辑器中打开 <code>/path/to/zju-comnet-labs-2026/apps/webget.cc</code> 。</p>
+<p>在编辑器中打开 <code>/path/to/zju-comnet-labs-2026/apps/webget.cc</code>。</p>
 </li>
 <li>
-<p>完成 <strong>get_URL</strong> 函数（请使用 <strong>HTTP</strong>请求的格式并使用 <strong>TCPSocket</strong> 和 <strong>Address</strong> 类）。具体来说，你需要通过socket建立连接，写入请求并最终读出返回的数据。</p>
+<p>使用 <code>TCPSocket</code> 和 <code>Address</code> 类完成 <code>get_URL</code> 函数。你需要通过 socket 建立连接，按照 HTTP 格式发送请求，并读取服务器返回的全部数据。</p>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
 <ul>
 <li>
-<p>在HTTP中，每行必须以“\r\n”结尾。</p>
+<p>在 HTTP 中，每行必须以 <code>\r\n</code> 结尾。</p>
 </li>
 <li>
-<p>Connection: close这句代码必须包含在客户端的请求中。</p>
+<p>客户端请求中必须包含 <code>Connection: close</code> 请求头。</p>
 </li>
 <li>
-<p>确保从服务器读取和打印所有的输出，直到套接字到达“EOF”，即文件的末尾。</p>
+<p>持续读取并输出服务器响应，直到套接字到达 EOF。</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>使用 <code>make</code> 重新编译你的项目。</p>
+<p>重新运行 <code>make</code> 编译项目。</p>
 </li>
 <li>
-<p>输入 <code>/path/to/zju-comnet-labs-2026/build/apps/webget cs144.keithw.org /hello [Enter]</code> 来测试你的程序。</p>
+<p>运行 <code>/path/to/zju-comnet-labs-2026/build/apps/webget cs144.keithw.org /hello [Enter]</code> 测试程序。</p>
 </li>
 <li>
-<p>如果你觉得上面的输出结果是正确的，你可以输入 <code>make check_webget [Enter]</code> 进行自动测试（测试样例路径：<code>/path/to/zju-comnet-labs-2026/tests/webget_t.sh</code>）。</p>
+<p>如果输出符合预期，可运行 <code>make check_webget [Enter]</code> 进行自动测试。测试脚本位于 <code>/path/to/zju-comnet-labs-2026/tests/webget_t.sh</code>。</p>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
-<p>如果这里显示timeout，检查网络、DNS、代理或 VPN 设置</p>
+<p>如果测试超时，请检查网络、DNS、代理或 VPN 设置。</p>
 </div>
 </li>
 </ol>
-<p>在完成 <strong>get_URL</strong> 函数后，你将看到如下的结果：</p>
+<p>完成 <strong>get_URL</strong> 函数后，运行测试将看到类似以下结果：</p>
 <div class="highlight"><pre><span></span><code>$ make check_webget
 [100%] Testing webget...
 Test project /path/to/zju-comnet-labs-2026/build
@@ -881,37 +867,37 @@ Total Test time (real) =   1.19 sec
 [100%] Built target check_webget
 </code></pre></div>
 <h2 id="4">4 可靠的字节流</h2>
-<p>在前一章节中，我们已经调用 socket 接口完成了简易的 webget 应用程序。在这一章中，我们将实现一个简化版的 socket 读写缓冲区（ByteStream）。如下图所示，在建立连接后，TCP会维护发送（send）和接收（recv）两个缓冲区。以recv缓冲区为例，client发送给server的数据将依次写入缓冲区，而server可以按需读取所需的数据。</p>
+<p>在上一节中，我们调用 socket 接口完成了简易的 webget 应用程序。本节将实现一个简化的 socket 读写缓冲区（ByteStream）。如下图所示，建立连接后，TCP 会维护发送（send）和接收（recv）两个缓冲区。以接收缓冲区为例，客户端发送的数据会依次写入缓冲区，服务器则可以按需读取。</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab2/buffer.png" data-desc-position="bottom"><img src="../assets/lab2/buffer.png" alt="buffer" style="zoom:70%;"></a></p>
-<p>在这一章中，你将自己动手实现一个字节流。字节在“输入”端写入，并可以按照相同的顺序从“输出”端读取。<strong>writer</strong> 可以结束输入，之后不能再写入任何字节。<strong>reader</strong> 读到流的末尾时，会遇到 <strong>EOF</strong> （end of file），之后不会再读取任何字节。</p>
-<p>你的字节流同时也要考虑容量控制，意味着它将在初始化时给定一个容量（capacity）：可以存入内存的最大字节数。你的字节流需要根据这个容量限制 <strong>writer</strong> 的写入，达到容量后不能继续写，而当 <strong>reader</strong> 从流中读出字节时，<strong>writer</strong> 才能继续写。</p>
-<p>打开 <code>libsponge/byte_stream.hh</code> 以及 <code>libsponge/byte_stream.cc</code> 文件，设计私有成员并完成接口的实现。接口可以分为4类：</p>
+<p>你将自己实现一个字节流。字节从“输入”端写入，并按照相同顺序从“输出”端读出。<strong>writer</strong> 可以结束输入，此后不得再写入任何字节；<strong>reader</strong> 读到流末尾时会遇到 <strong>EOF</strong>（end of file），此后不会再读到任何字节。</p>
+<p>字节流还需要进行容量控制。构造字节流时会指定容量（capacity），即缓冲区最多能够保存的字节数。缓冲区写满后，<strong>writer</strong> 必须停止写入；当 <strong>reader</strong> 读出字节并释放空间后，<strong>writer</strong> 才能继续写入。</p>
+<p>打开 <code>libsponge/byte_stream.hh</code> 和 <code>libsponge/byte_stream.cc</code>，设计所需的私有成员并完成接口实现。接口可以分为以下四类：</p>
 <ol>
 <li>构造函数
-<div class="highlight"><pre><span></span><code><span class="n">ByteStream</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">capacity</span><span class="p">);</span><span class="w"> </span><span class="c1">// 初始化所有需要的私有成员（自己设计并添加）</span>
+<div class="highlight"><pre><span></span><code><span class="n">ByteStream</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">capacity</span><span class="p">);</span><span class="w"> </span><span class="c1">// 初始化自行设计的私有成员</span>
 </code></pre></div></li>
 <li>Writer
-<div class="highlight"><pre><span></span><code><span class="kt">size_t</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">data</span><span class="p">);</span><span class="w"> </span><span class="c1">//将data尽可能多地写入stream，返回写入stream的字节数。</span>
-<span class="kt">size_t</span><span class="w"> </span><span class="nf">remaining_capacity</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">//返回stream中剩余空间的字节数。</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">end_input</span><span class="p">();</span><span class="w"> </span><span class="c1">//给私有变量赋值为true，代表输入已经完成</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">set_error</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">//若stream遇到错误，则私有变量_error赋值true</span>
+<div class="highlight"><pre><span></span><code><span class="kt">size_t</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">data</span><span class="p">);</span><span class="w"> </span><span class="c1">// 将 data 中尽可能多的字节写入 stream，返回实际写入的字节数</span>
+<span class="kt">size_t</span><span class="w"> </span><span class="nf">remaining_capacity</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">// 返回 stream 的剩余容量</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">end_input</span><span class="p">();</span><span class="w"> </span><span class="c1">// 标记输入结束，此后不再接受新的写入</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">set_error</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// 将错误标志 _error 设为 true</span>
 </code></pre></div></li>
 <li>Reader
-<div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">peek_output</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">//返回len长度的str</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">pop_output</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">);</span><span class="w"> </span><span class="c1">//从stream中pop出长度为len的str</span>
-<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">read</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">);</span><span class="w"> </span><span class="c1">//先peek再pop</span>
-<span class="kt">bool</span><span class="w"> </span><span class="nf">input_ended</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">//若输入结束则返回true</span>
-<span class="kt">bool</span><span class="w"> </span><span class="nf">error</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_error</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">//如果stream遇到error，则返回true</span>
-<span class="kt">size_t</span><span class="w"> </span><span class="nf">buffer_size</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">//返回当前可以从stream中读取的最大长度的str</span>
-<span class="kt">bool</span><span class="w"> </span><span class="nf">buffer_empty</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">//如果stream当前空了，返回empty</span>
-<span class="kt">bool</span><span class="w"> </span><span class="nf">eof</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">//如果输入结束且输出达到末尾，返回true</span>
+<div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">peek_output</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">// 返回接下来至多 len 个字节，但不移除它们</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">pop_output</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">);</span><span class="w"> </span><span class="c1">// 从 stream 中移除至多 len 个字节</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">read</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">);</span><span class="w"> </span><span class="c1">// 读取至多 len 个字节，即先 peek 再 pop</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">input_ended</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">// 输入结束时返回 true</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">error</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_error</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// stream 发生错误时返回 true</span>
+<span class="kt">size_t</span><span class="w"> </span><span class="nf">buffer_size</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">// 返回当前可读取的字节数</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">buffer_empty</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">// 缓冲区为空时返回 true</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">eof</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">// 输入结束且缓冲区为空时返回 true</span>
 </code></pre></div></li>
 <li>General Accounting
-<div class="highlight"><pre><span></span><code><span class="kt">size_t</span><span class="w"> </span><span class="nf">bytes_written</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">//总共写入的字节数</span>
-<span class="kt">size_t</span><span class="w"> </span><span class="nf">bytes_read</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">//总共pop出的字节数</span>
+<div class="highlight"><pre><span></span><code><span class="kt">size_t</span><span class="w"> </span><span class="nf">bytes_written</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">// 返回累计成功写入的字节数</span>
+<span class="kt">size_t</span><span class="w"> </span><span class="nf">bytes_read</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">// 返回累计从 stream 中移除的字节数</span>
 </code></pre></div></li>
 </ol>
-<p>当你开发完成并重新编译项目后，你可以输入 <code>make check_lab0 [Enter]</code> 进行自动测试。你将看到如下的结果：</p>
+<p>完成实现并重新编译项目后，可运行 <code>make check_lab0 [Enter]</code> 进行自动测试。若实现正确，你将看到类似以下结果：</p>
 <div class="highlight"><pre><span></span><code>$ make check_lab0
 [100%] Testing Lab 0...
 Test project /path/to/zju-comnet-labs-2026/build
@@ -941,22 +927,18 @@ Total Test time (real) =   1.38 sec
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">提示</p>
-<p>若仍然对接口的实现逻辑不清楚的，可以查看测试样例从而加深理解。</p>
+<p>如果仍不清楚接口的实现逻辑，可以阅读测试用例以加深理解：</p>
 <ul>
-<li>
-<p><code>/path/to/zju-comnet-labs-2026/tests/</code> 下的 <code>byte_stream_test_harness.hh</code> 和 <code>byte_stream_test_harness.cc</code> 是所有测试方法的声明和实现。</p>
-</li>
-<li>
-<p><code>/path/to/zju-comnet-labs-2026/tests/byte_stream_*.cc</code> 为测试样例</p>
-</li>
+<li><code>/path/to/zju-comnet-labs-2026/tests/</code> 下的 <code>byte_stream_test_harness.hh</code> 和 <code>byte_stream_test_harness.cc</code> 包含测试辅助类的声明与实现。</li>
+<li><code>/path/to/zju-comnet-labs-2026/tests/byte_stream_*.cc</code> 是具体测试用例。</li>
 </ul>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
 <ul>
-<li>如果无法使用ssh连接虚拟机，显示“Connection Refused”，可以在VirtualBox的虚拟机设置里手动加一下端口转发，如下图所示。
+<li>如果无法通过 SSH 连接虚拟机，并出现 <code>Connection Refused</code> 提示，可以在 VirtualBox 的虚拟机设置中手动添加端口转发规则，如下图所示。
 <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab2/port.png" data-desc-position="bottom"><img src="../assets/lab2/port.png" alt="VirtualBox 端口转发设置" style="zoom:70%;"></a></li>
-<li>如果你使用的MacBook，在UTM虚拟机中找不到端口转发的选项，可以在设置中将网络模式调整为模拟VLAN。</li>
+<li>如果你使用的是 MacBook，并且在 UTM 中找不到端口转发选项，可以在设置中将网络模式调整为“模拟 VLAN”。</li>
 </ul>
 </div>
 
