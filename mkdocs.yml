@@ -1,5 +1,8 @@
 site_name: 2026 计算机网络实验文档
 
+exclude_docs: |
+  实验模板/
+
 theme:
   name: material
   language: zh

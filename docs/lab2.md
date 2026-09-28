@@ -1,4 +1,4 @@
-# Lab2 Webget 与字节流（ByteStream）
+# Lab 2 Webget 与字节流（ByteStream）
 
 !!! warning "注意"
     实验报告提交 DDL 为 2026 年 10 月 11 日 23:59，请同学们留意。
@@ -6,54 +6,54 @@
     提交作业时请同时提交实验报告和源代码。
 
 !!! note "说明"
-	Lab2-5与CS144的实验内容对齐，我们将实现一个完整的TCP/IP协议栈。
+    Lab 2–5 的实验内容与 CS144 对齐，我们将在这些实验中实现一个完整的 TCP/IP 协议栈。
 
 ## 1 环境配置
 
-为了避免不必要的问题，我们推荐你使用虚拟机和CS144官方提供的镜像完成实验。
+为避免不必要的环境问题，建议使用虚拟机，并基于 CS144 官方提供的镜像完成实验。
 
-### 1.1 安装VirtualBox虚拟机并下载虚拟机镜像
+### 1.1 安装 VirtualBox 并下载虚拟机镜像
 
 VirtualBox：<https://www.oracle.com/cn/virtualization/virtualbox/>
 
-虚拟机镜像：<https://stanford.edu/class/cs144/vm_files/cs144-fall-2026-x86.ova> （很大的文件，建议预留1-2小时下载）
+虚拟机镜像：<https://stanford.edu/class/cs144/vm_files/cs144-fall-2026-x86.ova>（文件较大，建议预留 1～2 小时下载）
 
 <img src="../assets/lab2/virtualbox-download.png" alt="virtualbox-download" style="zoom:45%;" />
 
 !!! warning "注意"
-	如果你有一台2020-24的MacBook（带有ARM64M1芯片），VirtualBox可能将无法成功运行，请按照课程官方建议使用 UTM 和 ARM64 虚拟机镜像。
+    如果你使用配备 Apple Silicon（M 系列芯片）的 MacBook，VirtualBox 可能无法正常运行。请按照课程官方建议，使用 UTM 和 ARM64 虚拟机镜像。
 
-	UTM：<https://mac.getutm.app/>
-	
-	ARM64虚拟机镜像：<https://web.stanford.edu/class/cs144/vm_files/cs144-2026-arm.utm.tar.gz>
+    UTM：<https://mac.getutm.app/>
 
-### 1.2 导入CS144镜像
+    ARM64 虚拟机镜像：<https://web.stanford.edu/class/cs144/vm_files/cs144-2026-arm.utm.tar.gz>
 
-启动 **VirtualBox** ，你会看到如下界面：
+### 1.2 导入 CS144 镜像
+
+启动 **VirtualBox**，你会看到如下界面：
 
 <img src="../assets/lab2/init.png" alt="init" style="zoom:49%;" />
 
-点击“导入”，打开如下窗口。输入或选择你的 **cs144_vm.ova** 镜像文件。默认设置不需要改变，点击“完成”导入镜像。
+单击“导入”，打开如下窗口。选择已经下载的 **cs144_vm.ova** 镜像文件。无需修改默认设置，单击“完成”导入镜像。
 
 <img src="../assets/lab2/image.png" alt="image" style="zoom:70%;" />
 
-在左侧选择刚刚导入的虚拟机，点击启动。
+在左侧选择刚刚导入的虚拟机，然后单击“启动”。
 
 <img src="../assets/lab2/launch.png" alt="launch" style="zoom:46%;" />
 
-虚拟机将启动到文本界面，你的用户名是 cs144，默认密码也是 cs144。
+虚拟机会启动至文本界面，用户名和默认密码均为 `cs144`。
 
-### 1.3 连接你的虚拟机
+### 1.3 连接虚拟机
 
-我们推荐你使用 **ssh** 连接你的虚拟机，你可以将你的虚拟机使用 ssh 集成在 vscode 来进行编辑。虚拟机镜像已设置后，VirtualBox 会将主机上 localhost:2222 的 TCP 连接转发到虚拟机的 22 号端口 (ssh)。虚拟机运行时，你可以按如下方式连接：（如果你在配置ssh时出现问题，可以参考一下文档末尾的注意事项，可能会帮到你）
+建议通过 **SSH** 连接虚拟机，并使用 VS Code 进行远程编辑。CS144 镜像已经配置端口转发：主机的 `localhost:2222` 会被转发到虚拟机的 22 号端口（SSH）。虚拟机启动后，可运行以下命令连接。若连接失败，请参考文末的注意事项。
 
 ```bash
 ssh -p 2222 cs144@localhost
 ```
 
-### 1.4 安装所需的包
+### 1.4 安装所需软件包
 
-下面这些命令会安装实验中需要用到的包：
+以下命令将安装实验所需的软件包：
 
 ```bash
 sudo apt update && sudo apt install git cmake gdb build-essential clang \
@@ -62,37 +62,35 @@ clang-tidy clang-format gcc-doc pkg-config glibc-doc tcpdump tshark libpcap-dev
 
 ## 2 使用网络
 
-在正式进行编码工作之前，我们首先使用应用层程序访问一个网页。
+在开始编码之前，我们先使用应用层程序访问一个网页。
 
-### 2.1 浏览器访问一个网页
+### 2.1 使用浏览器访问网页
 
-在一个浏览器中，访问  <http://cs144.keithw.org/hello> ，你将会看到如下的结果。浏览器是典型的应用层程序，它会帮你构造符合 **HTTP** 协议的请求，发给服务器，然后把响应解析渲染成网页。
+使用浏览器访问 <http://cs144.keithw.org/hello>，你将看到如下结果。浏览器是典型的应用层程序，它会构造符合 **HTTP** 协议的请求并发送给服务器，再解析并呈现服务器返回的响应。
 <img src="../assets/lab2/hello.png" alt="hello" style="border:1px solid black;" />
 
-### 2.2 利用telnet抓取一个网页
+### 2.2 使用 Telnet 获取网页
 
-**Telnet** 也是应用层程序，只不过当你使用 telnet 连接到服务器时，需要手动输入 HTTP 报文。
+**Telnet** 也是一种应用层程序。与浏览器不同，使用 Telnet 连接服务器时，需要手动输入 HTTP 请求报文。
 
-
-
-1. 在你的虚拟机中运行 `telnet cs144.keithw.org http [Enter]` 命令。它告诉 telnet 程序在你的计算机与另一台计算机（名为**cs144.keithw.org** ）之间打开一个可靠的字节流，并在这台计算机运行一个特定的服务：“http”服务。如果你的虚拟机已经被正确设置且连接网络，你将会看到
+1. 在虚拟机中运行 `telnet cs144.keithw.org http [Enter]`。该命令会通过 HTTP 服务端口与 `cs144.keithw.org` 建立可靠的字节流连接。如果虚拟机配置正确且网络连接正常，你将看到以下输出：
 ```
 $ telnet cs144.keithw.org http
 Trying 104.196.238.229...
 Connected to cs144.keithw.org.
 Escape character is '^]'.
 ```
-按住 `Ctrl` 并按下 `]`，接着输入 `close` 退出。
+按住 `Ctrl` 并按下 `]`，然后输入 `close` 退出连接。
 
-2. 输入 `GET /hello HTTP/1.1 [Enter]` ，这告诉服务器URL的路径部分。
-3. 输入 `Host: cs144.keithw.org [Enter]` ，这告诉服务器URL的主机部分。
-4. 输入 `Connection: close [Enter]` ，这告诉服务器你已经完成了请求，服务器将在回应后断开连接。
-5. 多输入一次 `[Enter]` ，发送一个空行并告知服务器你已经完成了输入。
+2. 输入 `GET /hello HTTP/1.1 [Enter]`，指定请求的 URL 路径。
+3. 输入 `Host: cs144.keithw.org [Enter]`，指定请求的主机。
+4. 输入 `Connection: close [Enter]`，告知服务器在响应后关闭连接。
+5. 再按一次 `[Enter]`，发送一个空行以结束请求头。
 
 !!! warning "注意"
-	输入这几条指令时一定要快，不然连接会断掉。
+    输入上述内容时请尽量迅速，否则连接可能因超时而断开。
 
-输入成功后，你将会看到与浏览器展示的结果相同的回复。
+操作成功后，你将看到与浏览器所显示内容相同的响应。
 
 ```
 GET /hello HTTP/1.1
@@ -115,77 +113,71 @@ Connection closed by foreign host.
 
 ## 3 Webget
 
-如果你继续探索上述两个应用层程序，你会发现它们都建立在 **socket** 之上。Socket（套接字），是传输层提供给应用层的接口，对于应用层而言，是对TCP/UDP这些传输层协议的抽象封装。应用层程序通过 socket 建立连接，发送和接收数据。在这一章中，你将编写一个简短的应用层程序：**webget**，调用Linux内核提供的 **stream socket** 类来实现。
+对比上述两个应用层程序可以发现，它们都建立在 **socket** 之上。Socket（套接字）是操作系统向应用程序提供的网络通信接口，它对 TCP、UDP 等传输层协议进行了抽象封装。应用程序通过 socket 建立连接并收发数据。本节将编写一个简短的应用层程序 **webget**，通过 Linux 内核提供的 **stream socket** 接口获取网页内容。
 
 ### 3.1 建立仓库
 
-1. 在你的虚拟机上，输入 `git clone https://github.com/ZJU-Zhiyi/zju-comnet-labs-2026.git [Enter]` 来抓取项目初始代码文件。
+1. 在虚拟机中输入 `git clone https://github.com/ZJU-Zhiyi/zju-comnet-labs-2026.git [Enter]`，克隆实验初始代码。
 2. 输入 `cd zju-comnet-labs-2026 [Enter]` 进入项目目录。
-3. 输入 `mkdir build [Enter]` 构建 build 目录。
-4. 输入 `cd build [Enter]` 进入 build 目录。
-5. 输入 `cmake .. [Enter]` 搭建系统。
-6. 输入 `make [Enter]` 命令编译源代码。（这里注意你每次对项目进行了修改都需要重新运行 `make` 命令）
+3. 输入 `mkdir build [Enter]` 创建 `build` 目录。
+4. 输入 `cd build [Enter]` 进入 `build` 目录。
+5. 输入 `cmake .. [Enter]` 配置项目。
+6. 输入 `make [Enter]` 编译项目。每次修改代码后，都需要重新运行 `make`。
 
 !!! note "提示"
-	由于http连接github时常不稳定，我们推荐使用ssh来管理你的git仓库，可参考 <https://zhuanlan.zhihu.com/p/628727065>
+    由于通过 HTTPS 访问 GitHub 时可能不稳定，建议使用 SSH 管理 Git 仓库。配置方法可参考 <https://zhuanlan.zhihu.com/p/628727065>。
 
 ### 3.2 OS Stream Socket
 
-Linux内核提供了  **stream socket** ，它像一种文件描述符。当两个 stream socket 连在一起时，写入其中一个socket的字节最终将被另一个socket以相同的顺序读出。下图描述的是基于TCP/IP协议的 Client-Server 通信流程。
+在 Linux 中，**stream socket** 以文件描述符的形式供程序使用。两个 stream socket 建立连接后，写入一端的字节最终会按相同顺序从另一端读出。下图展示了基于 TCP/IP 协议的客户端—服务器通信流程。
 
 <img src="../assets/lab2/socket.png" alt="socket" style="zoom:45%;" />
 
-- 服务器端是等待连接并提供服务的程序
+- 服务器端负责等待连接并提供服务：
 
-  	- socket: 创建一个套接字，这是网络通信的端点
-		
-  	- bind: 将套接字和一个本地地址（IP地址和端口号）绑定
-		
-  	- listen: 使套接字进入监听状态，等待客户端的连接请求
-		
-  	- accept: 阻塞等待客户端连接。一旦接收到一个连接请求，它会创建一个新的套接字来处理这个客户端的通信
-		
-  	- while(true): 表示服务器通常会进入一个**循环**，不断地调用 `accept` 来等待并处理新的客户端连接
-		
-  	- read/write: 与已连接的客户端进行**数据读取和写入**的通信
-		
-  	- close: 关闭与当前客户端通信的套接字
+    - `socket`：创建套接字，即网络通信的端点。
+    - `bind`：将套接字绑定到本地地址（IP 地址和端口号）。
+    - `listen`：使套接字进入监听状态，等待客户端的连接请求。
+    - `accept`：阻塞并等待客户端连接。收到连接请求后，创建一个新的套接字与该客户端通信。
+    - `while (true)`：服务器通常会循环调用 `accept`，持续等待并处理新的客户端连接。
+    - `read`/`write`：通过已经连接的套接字收发数据。
+    - `close`：关闭与当前客户端通信的套接字。
 
-- 客户端是发起连接并请求服务的程序
+- 客户端负责发起连接并请求服务：
 
-  	- socket: 创建一个套接字
-  	- connect: 向服务器端的特定地址和端口**发起连接**。一旦连接成功，就可以开始数据传输
-  	- write/read: 通过已建立的连接向服务器**发送数据（write）和从服务器接收数据（read）**
-  	- read EOF: 客户端读取到**文件结束符**，表明服务器关闭了连接或关闭了写入端
-  	- close: 关闭套接字，终止与服务器的连接
+    - `socket`：创建套接字。
+    - `connect`：向服务器的指定地址和端口发起连接。连接成功后，即可开始传输数据。
+    - `write`/`read`：通过已经建立的连接向服务器发送数据，或读取服务器返回的数据。
+    - `read EOF`：客户端读取到文件结束标志，表示服务器已经关闭连接或关闭写入方向。
+    - `close`：关闭套接字，终止与服务器的连接。
 
-### 3.3 实现 **webget**
+### 3.3 实现 webget
 
-请阅读 `libsponge/util/socket.hh` 和 `libsponge/util/file_descriptor.hh` 的 public interfaces（请注意 **Socket** 继承于 **FileDescriptor**，**TCPSocket** 继承于 **Socket** ） 。熟悉 socket 各接口的定义以及如何调用。
+请阅读 `libsponge/util/socket.hh` 和 `libsponge/util/file_descriptor.hh` 中的公开接口。注意，`Socket` 继承自 `FileDescriptor`，`TCPSocket` 继承自 `Socket`。请熟悉这些接口的定义和调用方法。
 
-现在我们要调用 TCPSocket 的接口来实现 webget 这个应用层程序 ，就像前面的 `telnet` 一样用于抓取网页。
+接下来，你将调用 `TCPSocket` 的接口实现应用层程序 `webget`。其功能与前面的 Telnet 类似，用于获取网页内容。
 
-1. 在编辑器中打开 `/path/to/zju-comnet-labs-2026/apps/webget.cc` 。
+1. 在编辑器中打开 `/path/to/zju-comnet-labs-2026/apps/webget.cc`。
 
-2. 完成 **get_URL** 函数（请使用 **HTTP**请求的格式并使用 **TCPSocket** 和 **Address** 类）。具体来说，你需要通过socket建立连接，写入请求并最终读出返回的数据。
+2. 使用 `TCPSocket` 和 `Address` 类完成 `get_URL` 函数。你需要通过 socket 建立连接，按照 HTTP 格式发送请求，并读取服务器返回的全部数据。
 
     !!! warning "注意"
-        - 在HTTP中，每行必须以“\r\n”结尾。
+        - 在 HTTP 中，每行必须以 `\r\n` 结尾。
 
-        - Connection: close这句代码必须包含在客户端的请求中。
-        
-        - 确保从服务器读取和打印所有的输出，直到套接字到达“EOF”，即文件的末尾。
+        - 客户端请求中必须包含 `Connection: close` 请求头。
 
-3. 使用 `make` 重新编译你的项目。
+        - 持续读取并输出服务器响应，直到套接字到达 EOF。
 
-4. 输入 `/path/to/zju-comnet-labs-2026/build/apps/webget cs144.keithw.org /hello [Enter]` 来测试你的程序。
+3. 重新运行 `make` 编译项目。
 
-5. 如果你觉得上面的输出结果是正确的，你可以输入 `make check_webget [Enter]` 进行自动测试（测试样例路径：`/path/to/zju-comnet-labs-2026/tests/webget_t.sh`）。
+4. 运行 `/path/to/zju-comnet-labs-2026/build/apps/webget cs144.keithw.org /hello [Enter]` 测试程序。
+
+5. 如果输出符合预期，可运行 `make check_webget [Enter]` 进行自动测试。测试脚本位于 `/path/to/zju-comnet-labs-2026/tests/webget_t.sh`。
 
     !!! warning "注意"
-    	如果这里显示timeout，检查网络、DNS、代理或 VPN 设置
+        如果测试超时，请检查网络、DNS、代理或 VPN 设置。
 
-在完成 **get_URL** 函数后，你将看到如下的结果：
+完成 **get_URL** 函数后，运行测试将看到类似以下结果：
 
 ```
 $ make check_webget
@@ -202,46 +194,45 @@ Total Test time (real) =   1.19 sec
 
 ## 4 可靠的字节流
 
-在前一章节中，我们已经调用 socket 接口完成了简易的 webget 应用程序。在这一章中，我们将实现一个简化版的 socket 读写缓冲区（ByteStream）。如下图所示，在建立连接后，TCP会维护发送（send）和接收（recv）两个缓冲区。以recv缓冲区为例，client发送给server的数据将依次写入缓冲区，而server可以按需读取所需的数据。
+在上一节中，我们调用 socket 接口完成了简易的 webget 应用程序。本节将实现一个简化的 socket 读写缓冲区（ByteStream）。如下图所示，建立连接后，TCP 会维护发送（send）和接收（recv）两个缓冲区。以接收缓冲区为例，客户端发送的数据会依次写入缓冲区，服务器则可以按需读取。
 
 <img src="../assets/lab2/buffer.png" alt="buffer" style="zoom:70%;" />
 
-在这一章中，你将自己动手实现一个字节流。字节在“输入”端写入，并可以按照相同的顺序从“输出”端读取。**writer** 可以结束输入，之后不能再写入任何字节。**reader** 读到流的末尾时，会遇到 **EOF** （end of file），之后不会再读取任何字节。
+你将自己实现一个字节流。字节从“输入”端写入，并按照相同顺序从“输出”端读出。**writer** 可以结束输入，此后不得再写入任何字节；**reader** 读到流末尾时会遇到 **EOF**（end of file），此后不会再读到任何字节。
 
-你的字节流同时也要考虑容量控制，意味着它将在初始化时给定一个容量（capacity）：可以存入内存的最大字节数。你的字节流需要根据这个容量限制 **writer** 的写入，达到容量后不能继续写，而当 **reader** 从流中读出字节时，**writer** 才能继续写。
+字节流还需要进行容量控制。构造字节流时会指定容量（capacity），即缓冲区最多能够保存的字节数。缓冲区写满后，**writer** 必须停止写入；当 **reader** 读出字节并释放空间后，**writer** 才能继续写入。
 
-打开 `libsponge/byte_stream.hh` 以及 `libsponge/byte_stream.cc` 文件，设计私有成员并完成接口的实现。接口可以分为4类：
+打开 `libsponge/byte_stream.hh` 和 `libsponge/byte_stream.cc`，设计所需的私有成员并完成接口实现。接口可以分为以下四类：
 
 1. 构造函数
 ```c++
-ByteStream(const size_t capacity); // 初始化所有需要的私有成员（自己设计并添加）
+ByteStream(const size_t capacity); // 初始化自行设计的私有成员
 ```
 2. Writer
 ```c++
-size_t write(const std::string &data); //将data尽可能多地写入stream，返回写入stream的字节数。
-size_t remaining_capacity() const; //返回stream中剩余空间的字节数。
-void end_input(); //给私有变量赋值为true，代表输入已经完成
-void set_error() { _error = true; } //若stream遇到错误，则私有变量_error赋值true
+size_t write(const std::string &data); // 将 data 中尽可能多的字节写入 stream，返回实际写入的字节数
+size_t remaining_capacity() const; // 返回 stream 的剩余容量
+void end_input(); // 标记输入结束，此后不再接受新的写入
+void set_error() { _error = true; } // 将错误标志 _error 设为 true
 ```
 3. Reader
 ```c++
-std::string peek_output(const size_t len) const; //返回len长度的str
-void pop_output(const size_t len); //从stream中pop出长度为len的str
-std::string read(const size_t len); //先peek再pop
-bool input_ended() const; //若输入结束则返回true
-bool error() const { return _error; } //如果stream遇到error，则返回true
-size_t buffer_size() const; //返回当前可以从stream中读取的最大长度的str
-bool buffer_empty() const; //如果stream当前空了，返回empty
-bool eof() const; //如果输入结束且输出达到末尾，返回true
+std::string peek_output(const size_t len) const; // 返回接下来至多 len 个字节，但不移除它们
+void pop_output(const size_t len); // 从 stream 中移除至多 len 个字节
+std::string read(const size_t len); // 读取至多 len 个字节，即先 peek 再 pop
+bool input_ended() const; // 输入结束时返回 true
+bool error() const { return _error; } // stream 发生错误时返回 true
+size_t buffer_size() const; // 返回当前可读取的字节数
+bool buffer_empty() const; // 缓冲区为空时返回 true
+bool eof() const; // 输入结束且缓冲区为空时返回 true
 ```
 4. General Accounting
 ```c++
-size_t bytes_written() const; //总共写入的字节数
-size_t bytes_read() const; //总共pop出的字节数
+size_t bytes_written() const; // 返回累计成功写入的字节数
+size_t bytes_read() const; // 返回累计从 stream 中移除的字节数
 ```
 
-
-当你开发完成并重新编译项目后，你可以输入 `make check_lab0 [Enter]` 进行自动测试。你将看到如下的结果：
+完成实现并重新编译项目后，可运行 `make check_lab0 [Enter]` 进行自动测试。若实现正确，你将看到类似以下结果：
 
 ```
 $ make check_lab0
@@ -273,15 +264,12 @@ Total Test time (real) =   1.38 sec
 ```
 
 !!! note "提示"
-	若仍然对接口的实现逻辑不清楚的，可以查看测试样例从而加深理解。
+    如果仍不清楚接口的实现逻辑，可以阅读测试用例以加深理解：
 
- 	- `/path/to/zju-comnet-labs-2026/tests/` 下的 `byte_stream_test_harness.hh` 和 `byte_stream_test_harness.cc` 是所有测试方法的声明和实现。
- 	
- 	- `/path/to/zju-comnet-labs-2026/tests/byte_stream_*.cc` 为测试样例
-
-
+    - `/path/to/zju-comnet-labs-2026/tests/` 下的 `byte_stream_test_harness.hh` 和 `byte_stream_test_harness.cc` 包含测试辅助类的声明与实现。
+    - `/path/to/zju-comnet-labs-2026/tests/byte_stream_*.cc` 是具体测试用例。
 
 !!! warning "注意"
-	- 如果无法使用ssh连接虚拟机，显示“Connection Refused”，可以在VirtualBox的虚拟机设置里手动加一下端口转发，如下图所示。
-	<img src="../assets/lab2/port.png" alt="VirtualBox 端口转发设置" style="zoom:70%;"/>
-	- 如果你使用的MacBook，在UTM虚拟机中找不到端口转发的选项，可以在设置中将网络模式调整为模拟VLAN。
+    - 如果无法通过 SSH 连接虚拟机，并出现 `Connection Refused` 提示，可以在 VirtualBox 的虚拟机设置中手动添加端口转发规则，如下图所示。
+    <img src="../assets/lab2/port.png" alt="VirtualBox 端口转发设置" style="zoom:70%;"/>
+    - 如果你使用的是 MacBook，并且在 UTM 中找不到端口转发选项，可以在设置中将网络模式调整为“模拟 VLAN”。
