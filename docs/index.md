@@ -11,7 +11,7 @@
 
 - WireShark软件初探和常见网络命令的使用
 - Webget 与字节流（ByteStream）
-- 网络接口与IP路由器
+- 网络接口与 IP 路由器
 - TCP接收方与发送方
 - 综合实验：完整的TCP实现
 - 基于Socket接口实现自定义协议通信

@@ -11,6 +11,7 @@ nav:
   - 主页: index.md
   - Lab1: lab1.md
   - Lab2: lab2.md
+  - Lab3: lab3.md
 
 markdown_extensions:
   - attr_list
