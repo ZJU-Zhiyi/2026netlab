@@ -1,0 +1,814 @@
+<!DOCTYPE html><html lang="zh" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://zju-zhiyi.github.io/2026netlab/lab6/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>Lab6 基于Socket接口实现自定义协议通信 - 2026 计算机网络实验文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab6-socket" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="2026 计算机网络实验文档" class="md-header__button md-logo" aria-label="2026 计算机网络实验文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            2026 计算机网络实验文档
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab6 基于Socket接口实现自定义协议通信
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="2026 计算机网络实验文档" class="md-nav__button md-logo" aria-label="2026 计算机网络实验文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    2026 计算机网络实验文档
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    主页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 引言
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-socket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 回顾 Socket
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 你的任务
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 你的任务">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 任务总览
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 代码实现
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 代码实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.1 拉取代码
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.2 框架说明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2.2 框架说明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目录结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        协议说明
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        你可能会用到的结构和函数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        需完成的核心任务
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#323" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.3 编译与运行
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="lab6-socket">Lab6 基于Socket接口实现自定义协议通信</h1>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>实验报告提交 DDL 为 2026 年 xx 月 xx 日 23:59，请同学们留意。</p>
+</div>
+<h2 id="1">1 引言</h2>
+<p>在上一次实验中，我们已经完整的实现了完整的TCP协议栈。在本次实验中，我们将学习并掌握 Linux 系统所提供的 socket 接口，并基于该接口实现自定义的 client-server 通信。具体来说，我们需要基于 TCP 的简单应用层协议，完成多客户端的连接、时间/主机名查询、客户端列表和点对点消息转发。</p>
+<h2 id="2-socket">2 回顾 Socket</h2>
+<p>​    Socket是在应用层和传输层之间的一个抽象层，它把TCP/IP层复杂的操作抽象为几个简单的接口供应用层调用以实现进程在网络中通信。</p>
+<p>​    Socket起源于UNIX，是一种“打开-读/写-关闭”模式的实现，服务器和客户端各自维护一个“文件”，在建立连接打开后，可以向自己文件写入内容供对方读取或者读取对方内容，通讯结束时关闭文件。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab6/socket-commu.jpg" data-desc-position="bottom"><img src="../assets/lab6/socket-commu.jpg" alt="format" style="display:block; margin:0 auto; width:50%; height:auto; "></a></p>
+<h2 id="3">3 你的任务</h2>
+<h3 id="31">3.1 任务总览</h3>
+<p>在本次实验中，你需要根据自定义的协议规范，基于Socket编程接口设计一个客户端和服务端之间的应用通信协议。具体来说，你需要：</p>
+<p><strong>开发一个客户端，实现人机交互界面和与服务器的通信</strong>。客户端采用交互菜单形式，用户可以选择以下功能：</p>
+<ul>
+<li>
+<p>连接：请求连接到指定地址和端口的服务端</p>
+</li>
+<li>
+<p>断开连接：断开与服务端的连接</p>
+</li>
+<li>
+<p>获取时间: 请求服务端给出当前时间</p>
+</li>
+<li>
+<p>获取名字：请求服务端给出其机器的名称</p>
+</li>
+<li>
+<p>活动连接列表：请求服务端给出当前连接的所有客户端信息（编号、IP地址、端口等）</p>
+</li>
+<li>
+<p>发消息：请求服务端把消息转发给对应编号的客户端，该客户端收到后显示在屏幕上</p>
+</li>
+<li>
+<p>退出：断开连接并退出客户端程序</p>
+</li>
+</ul>
+<p><strong>开发一个服务端，实现并发处理多个客户端的请求</strong>。服务端接收到客户端请求后，根据客户端传过来的指令完成特定任务：</p>
+<ul>
+<li>向客户端传送服务端所在机器的当前时间</li>
+<li>向客户端传送服务端所在机器的名称</li>
+<li>向客户端传送当前连接的所有客户端信息</li>
+<li>将某客户端发送过来的内容转发给指定编号的其他客户端</li>
+<li>采用异步多线程编程模式，正确处理多个客户端同时连接，同时发送消息的情况</li>
+</ul>
+<h3 id="32">3.2 代码实现</h3>
+<h4 id="321">3.2.1 拉取代码</h4>
+<ol>
+<li>在你的虚拟机上，输入 <code>git pull [Enter]</code> 来抓取 lab6 的代码框架。</li>
+<li>输入 <code>git checkout lab6-todo [Enter]</code> 切换到本次实验使用的框架。</li>
+</ol>
+<h4 id="322">3.2.2 框架说明</h4>
+<h5 id="_1">目录结构</h5>
+<ul>
+<li><code>client/</code>：客户端逻辑。<code>client.cpp</code> 负责命令循环，<code>func.cpp</code> 里是待完成的网络交互。</li>
+<li><code>server/</code>：服务器逻辑。<code>server.cpp</code> 里需要完成监听、接入、消息分发。</li>
+</ul>
+<h5 id="_2">协议说明</h5>
+<p>我们给出一个简单的通信协议定义，当然你也可以自行定义。</p>
+<ul>
+<li>传输层：TCP。</li>
+<li>报文格式：首字节为类型，后续为 ASCII 负载（可空）。常量定义如下：</li>
+<li><code>CONNECT (1)</code>：客户端发送空负载；服务器回复自身分配的客户端 ID（字符串）。</li>
+<li><code>TIME (3)</code>：客户端请求时间；服务器回复当前时间字符串。</li>
+<li><code>NAME (4)</code>：客户端请求主机名；服务器回复主机名字符串。</li>
+<li><code>LIST (5)</code>：客户端请求在线列表；服务器回复 <code>id1$id2$...</code>。</li>
+<li><code>MESSAGE (6)</code>：客户端发送 <code>目标id$内容</code>；服务器若成功则向目标下发 <code>SIGNAL (2)</code> 报文，负载同上；若目标不存在可回 <code>MESSAGE</code> 或 <code>INVALID (0)</code> 作为错误提示。</li>
+<li><code>DISCONNECT (7)</code>：客户端主动断开；服务器清理状态。</li>
+<li>其他类型可按需返回 <code>INVALID (0)</code>。</li>
+</ul>
+<h5 id="_3">你可能会用到的结构和函数</h5>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr_in</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="kt">short</span><span class="w">            </span><span class="n">sin_family</span><span class="p">;</span><span class="w">    </span><span class="c1">// 2 字节 ，地址族，e.g. AF_INET, AF_INET6</span>
+<span class="w">     </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">short</span><span class="w">   </span><span class="n">sin_port</span><span class="p">;</span><span class="w">      </span><span class="c1">// 2 字节 ，16位TCP/UDP 端口号 e.g. htons(1234)</span>
+<span class="w">     </span><span class="k">struct</span><span class="w"> </span><span class="nc">in_addr</span><span class="w">   </span><span class="n">sin_addr</span><span class="p">;</span><span class="w">      </span><span class="c1">// 4 字节 ，32位IP地址</span>
+<span class="w">     </span><span class="kt">char</span><span class="w">             </span><span class="n">sin_zero</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span><span class="w">   </span><span class="c1">// 8 字节 ，不使用</span>
+<span class="p">};</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">in_addr</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">s_addr</span><span class="p">;</span><span class="w">  </span><span class="c1">// INADDR_ANY</span>
+<span class="p">};</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr</span><span class="p">{</span>
+<span class="w">　　</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">short</span><span class="w"> </span><span class="n">sa_family</span><span class="p">;</span><span class="w">     </span><span class="c1">//2字节，地址族，AF_xxx</span>
+<span class="w">　　</span><span class="kt">char</span><span class="w"> </span><span class="n">sa_data</span><span class="p">[</span><span class="mi">14</span><span class="p">];</span><span class="w">      </span><span class="c1">//14字节，包含套接字中的目标地址和端口信息</span>
+<span class="p">};</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">sockfd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span><span class="w"> </span><span class="n">SOCK_STREAM</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">//socket(domain, type, protocol)，如果有错误会返回-1，否则会返回一个int，代表socket的句柄</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr_in</span><span class="w"> </span><span class="n">address1</span><span class="p">;</span>
+<span class="n">address1</span><span class="p">.</span><span class="n">sin_family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AF_INET</span><span class="p">;</span><span class="w"> </span><span class="c1">// IPv4</span>
+<span class="n">address1</span><span class="p">.</span><span class="n">sin_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">htons</span><span class="p">(</span><span class="n">Port</span><span class="p">);</span><span class="w"> </span><span class="c1">//端口号</span>
+<span class="n">address1</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">INADDR_ANY</span><span class="p">;</span><span class="w"> </span><span class="c1">//IP，INADDR_ANY表示本机IP</span>
+
+<span class="n">bind</span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">sockaddr</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">address1</span><span class="p">),</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">address1</span><span class="p">));</span><span class="w"> </span><span class="c1">// server端绑定socket与地址结构体，用于在这个地址上进行监听</span>
+
+<span class="n">listen</span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="n">MAXPC</span><span class="p">);</span><span class="w"> </span><span class="c1">// server端开启监听，第二个参数是最大监听数</span>
+
+<span class="n">accept</span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="nb">nullptr</span><span class="p">,</span><span class="w"> </span><span class="nb">nullptr</span><span class="p">);</span><span class="w"> </span><span class="c1">// server端同意连接</span>
+
+<span class="n">connect</span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">sockaddr</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">address1</span><span class="p">),</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">address1</span><span class="p">));</span><span class="w"> </span><span class="c1">// client端对目标server的端口进行连接</span>
+
+<span class="n">send</span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="n">packet</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span><span class="w"> </span><span class="n">packet</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">//参数： socket句柄，内容，大小，其他信息（设为0）</span>
+
+<span class="kt">char</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="n">MAXBUF</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="n">recv</span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">buffer</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">//参数： socket句柄，内容，大小，其他信息（设为0）</span>
+</code></pre></div>
+<h5 id="_4">需完成的核心任务</h5>
+<p>1) <strong>客户端 <code>client/func.cpp</code></strong></p>
+<ul>
+<li><code>SendPacket</code>：组装类型字节 + 负载并 <code>send</code>。</li>
+<li><code>ServerConnect</code>：创建 socket，请用户输入 IP和端口，<code>connect</code> 后设 <code>connected=true</code>，启动接收数据的子线程 <code>Recieve</code>，注意该子线程需分离或在退出时回收。</li>
+<li><code>ServerDisconnect</code>/<code>ExitComm</code>：发送 <code>DISCONNECT</code>，关闭 socket，重置状态。</li>
+<li><code>GetTime</code>/<code>GetName</code>/<code>ClientList</code>：调用 <code>SendPacket</code> 发送对应类型。</li>
+<li><code>SendMessa</code>：用户需要在知道客户端列表的前提下，输入目标客户端 id 与消息内容，利用 <code>$</code>作为分隔符， 按 <code>id$内容</code> 构造负载并发送 <code>MESSAGE</code>。</li>
+<li><code>Recieve</code>：循环 <code>recv</code>，按类型解析负载并打印提示（连接 ID、时间、主机名、列表、错误或来自其他客户端的消息 <code>SIGNAL</code> 等）。</li>
+</ul>
+<p>2) <strong>服务器 <code>server/server.cpp</code></strong></p>
+<ul>
+<li><code>SendPacket</code>：组装报文后通过指定 <code>sock</code> 发送。</li>
+<li><code>BuildServer</code>：创建监听 socket，设置 <code>Addr</code> 中的端口（<code>Port</code> 需替换为你的学号后四位），<code>bind</code> + <code>listen</code>，循环 <code>accept</code>；为每个客户端创建线程 <code>Recieve</code> 并 <code>pthread_detach</code>；将 <code>sock</code> 写入 <code>clients</code>（保护互斥锁）。</li>
+<li><code>RemoveClient</code>：锁保护下从 <code>clients</code> 删除并 <code>close</code>。</li>
+<li><code>Recieve</code>：从客户端 <code>sock</code> 循环 <code>recv</code>。按首字节类型处理：<ul>
+<li><code>CONNECT</code>：为新连接分配 ID（可用递增计数或 <code>sock</code> 号），存入 <code>clients[sock]=id</code>，回复 <code>CONNECT</code> 负载为 ID。</li>
+<li><code>TIME</code>/<code>NAME</code>/<code>LIST</code>：生成字符串负载后调用 <code>SendPacket</code>。</li>
+<li><code>MESSAGE</code>：解析 <code>id$内容</code>，查找目标并转发 <code>SIGNAL</code>；找不到则向源 <code>sock</code> 返回错误。</li>
+<li><code>DISCONNECT</code> 或 <code>recv</code> 断开：调用 <code>RemoveClient</code> 后结束线程。</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">说明</p>
+<ul>
+<li>请将 server端的监听端口设置为你的学号后四位。</li>
+<li>由于多个线程会同时读写 <code>clients</code> 这个共享容器，互斥锁用来防止并发访问导致数据竞争和程序崩溃。</li>
+</ul>
+</div>
+<h4 id="323">3.2.3 编译与运行</h4>
+<p>在项目根目录执行：
+</p><div class="highlight"><pre><span></span><code>g++<span class="w"> </span>client/client.cpp<span class="w"> </span>client/func.cpp<span class="w"> </span>-lpthread<span class="w"> </span>-o<span class="w"> </span>client/client.out
+g++<span class="w"> </span>server/server.cpp<span class="w"> </span>-lpthread<span class="w"> </span>-o<span class="w"> </span>server/server.out
+</code></pre></div><p></p>
+<p>运行顺序：</p>
+<ol>
+<li>先启动服务器：<code>server.out</code>（确保 <code>Port</code> 已改为个人端口，必要时在防火墙中开放）。</li>
+<li>重新开启一个终端，并启动客户端：<code>client.out</code>，根据提示输入 <code>connect</code>，在提示时填写服务器 IP（例如 127.0.0.1） 与端口。</li>
+<li>可开启多个客户端实例互相发送消息；使用 <code>list</code> 查看 ID，<code>message</code> 发送 <code>id</code> 指定消息。</li>
+</ol>
+<p>当你开发完成并重新编译项目后，你将看到如下的结果：</p>
+<p><strong>server启动</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">SRV</span><span class="p">]</span><span class="w"> </span><span class="n">Server</span><span class="w"> </span><span class="n">Building</span>
+<span class="p">[</span><span class="n">SRV</span><span class="p">]</span><span class="w"> </span><span class="n">Server</span><span class="w"> </span><span class="n">Build</span><span class="w"> </span><span class="n">Successfully</span><span class="p">.</span>
+<span class="p">[</span><span class="n">SRV</span><span class="p">]</span><span class="w"> </span><span class="n">Waiting</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">packs</span><span class="p">.</span>
+</code></pre></div>
+<p><strong>client启动</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">SYS</span><span class="p">]</span><span class="w"> </span><span class="n">Nice</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">meet</span><span class="w"> </span><span class="n">you</span><span class="p">,</span><span class="w"> </span><span class="n">dear</span><span class="w"> </span><span class="n">client</span><span class="o">!</span><span class="w"> </span><span class="p">(</span><span class="o">^</span><span class="n">_</span><span class="o">~</span><span class="p">)</span>
+<span class="p">[</span><span class="n">SYS</span><span class="p">]</span><span class="w"> </span><span class="n">Welcome</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="n">my</span><span class="w"> </span><span class="n">communication</span><span class="w"> </span><span class="n">service</span><span class="p">.</span>
+<span class="p">[</span><span class="n">SYS</span><span class="p">]</span><span class="w"> </span><span class="n">Please</span><span class="w"> </span><span class="n">choose</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">following</span><span class="w"> </span><span class="n">services</span><span class="o">:</span>
+
+<span class="p">[</span><span class="n">HELP</span><span class="p">]</span>
+<span class="n">connect</span><span class="w">  </span><span class="n">Try</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">connect</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">server</span><span class="p">.</span>
+<span class="n">exit</span><span class="w">     </span><span class="n">Exit</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="k">this</span><span class="w"> </span><span class="n">communication</span><span class="p">.</span>
+<span class="n">help</span><span class="w">     </span><span class="n">Show</span><span class="w"> </span><span class="n">all</span><span class="w"> </span><span class="n">services</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">you</span><span class="p">.</span>
+
+<span class="p">[</span><span class="n">CLI</span><span class="p">]</span><span class="w"> </span><span class="n">Your</span><span class="w"> </span><span class="n">command</span><span class="o">:</span>
+</code></pre></div>
+<p><strong>建立连接</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1">// client</span>
+<span class="p">[</span><span class="n">CLI</span><span class="p">]</span><span class="w"> </span><span class="n">Your</span><span class="w"> </span><span class="n">command</span><span class="o">:</span><span class="w"> </span><span class="n">connect</span>
+
+<span class="p">[</span><span class="n">CONNECT</span><span class="p">]</span>
+<span class="p">[</span><span class="n">SYS</span><span class="p">]</span><span class="w"> </span><span class="n">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">IP</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">want</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">connect</span><span class="w"> </span><span class="n">to</span><span class="p">.</span>
+<span class="p">[</span><span class="n">CLI</span><span class="p">]</span><span class="w"> </span><span class="n">IP</span><span class="w"> </span><span class="n">address</span><span class="o">:</span><span class="w"> </span><span class="mf">127.0.0.1</span>
+<span class="p">[</span><span class="n">CLI</span><span class="p">]</span><span class="w"> </span><span class="n">Port</span><span class="w"> </span><span class="n">number</span><span class="o">:</span><span class="w"> </span><span class="n">Your</span><span class="w"> </span><span class="n">number</span>
+<span class="p">[</span><span class="n">SYS</span><span class="p">]</span><span class="w"> </span><span class="n">Connecting</span><span class="w"> </span><span class="p">...</span>
+<span class="p">[</span><span class="n">SYS</span><span class="p">]</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="n">Success</span><span class="o">!</span>
+
+<span class="p">[</span><span class="n">CLI</span><span class="p">]</span><span class="w"> </span><span class="n">Your</span><span class="w"> </span><span class="n">command</span><span class="o">:</span>
+<span class="p">[</span><span class="n">SYS</span><span class="p">]</span><span class="w"> </span><span class="n">Your</span><span class="w"> </span><span class="n">Client</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="mi">4</span>
+
+<span class="c1">// server</span>
+<span class="p">[</span><span class="n">SRV</span><span class="p">]</span><span class="w"> </span><span class="n">Client</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="n">connect</span><span class="w"> </span><span class="n">successfully</span><span class="o">!</span>
+<span class="p">[</span><span class="n">SRV</span><span class="p">]</span><span class="w"> </span><span class="n">Client</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="n">returned</span><span class="p">.</span>
+</code></pre></div>
+<p><strong>查询时间/主机名/客户端列表（以时间为例）</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1">// client</span>
+<span class="p">[</span><span class="n">CLI</span><span class="p">]</span><span class="w"> </span><span class="n">Your</span><span class="w"> </span><span class="n">command</span><span class="o">:</span><span class="w"> </span><span class="n">time</span>
+
+<span class="p">[</span><span class="n">TIME</span><span class="p">]</span>
+<span class="p">[</span><span class="n">SYS</span><span class="p">]</span><span class="w"> </span><span class="n">Request</span><span class="w"> </span><span class="n">Sending</span><span class="w"> </span><span class="n">Success</span>
+
+<span class="p">[</span><span class="n">CLI</span><span class="p">]</span><span class="w"> </span><span class="n">Your</span><span class="w"> </span><span class="n">command</span><span class="o">:</span>
+<span class="p">[</span><span class="n">SYS</span><span class="p">]</span><span class="w"> </span><span class="n">Current</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="n">is</span><span class="o">:</span><span class="w"> </span><span class="p">...</span>
+
+<span class="c1">// server</span>
+<span class="p">[</span><span class="n">SRV</span><span class="p">]</span><span class="w"> </span><span class="n">Receive</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">TIME</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="mi">4</span>
+<span class="p">[</span><span class="n">SRV</span><span class="p">]</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="n">Sending</span><span class="w"> </span><span class="n">Back</span><span class="w"> </span><span class="n">Successfully</span><span class="p">.</span>
+</code></pre></div>
+<p><strong>发送消息</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 假设有两个client 4和5，现在5向4发送消息</span>
+<span class="c1">// client 5</span>
+<span class="p">[</span><span class="n">CLI</span><span class="p">]</span><span class="w"> </span><span class="n">Your</span><span class="w"> </span><span class="n">command</span><span class="o">:</span><span class="w"> </span><span class="n">message</span>
+
+<span class="p">[</span><span class="n">MESSAGE</span><span class="p">]</span>
+<span class="p">[</span><span class="n">SYS</span><span class="p">]</span><span class="w"> </span><span class="n">Please</span><span class="w"> </span><span class="n">Enter</span><span class="w"> </span><span class="n">Other</span><span class="w"> </span><span class="n">Clients</span><span class="err">'</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Message</span><span class="w"> </span><span class="p">(</span><span class="n">only</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="n">line</span><span class="p">)</span>
+<span class="p">[</span><span class="n">CLI</span><span class="p">]</span><span class="w"> </span><span class="n">Client</span><span class="w"> </span><span class="n">ID</span><span class="o">:</span><span class="w"> </span><span class="mi">4</span>
+<span class="p">[</span><span class="n">CLI</span><span class="p">]</span><span class="w"> </span><span class="n">Message</span><span class="o">:</span><span class="w"> </span><span class="n">hello</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="mf">5.</span>
+<span class="p">[</span><span class="n">SYS</span><span class="p">]</span><span class="w"> </span><span class="n">Message</span><span class="w"> </span><span class="n">Sending</span><span class="w"> </span><span class="n">Success</span><span class="p">.</span>
+
+<span class="c1">// server</span>
+<span class="p">[</span><span class="n">SRV</span><span class="p">]</span><span class="w"> </span><span class="n">Receive</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">MESSAGE</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="mi">5</span>
+<span class="p">[</span><span class="n">SRV</span><span class="p">]</span><span class="w"> </span><span class="n">Message</span><span class="w"> </span><span class="n">Sending</span><span class="w"> </span><span class="n">Success</span>
+
+<span class="c1">// client 4</span>
+<span class="p">[</span><span class="n">RECEIVE</span><span class="w"> </span><span class="n">MESSAGE</span><span class="p">]</span>
+<span class="p">[</span><span class="n">SYS</span><span class="p">]</span><span class="w"> </span><span class="n">Client</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="n">Just</span><span class="w"> </span><span class="n">Sent</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">Message</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">you</span><span class="o">:</span>
+<span class="n">hello</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="mf">5.</span>
+</code></pre></div>
+<p><strong>断开连接/退出</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1">// client</span>
+<span class="p">[</span><span class="n">CLI</span><span class="p">]</span><span class="w"> </span><span class="n">Your</span><span class="w"> </span><span class="n">command</span><span class="o">:</span><span class="w"> </span><span class="n">disconnect</span>
+
+<span class="p">[</span><span class="n">DISCONNECT</span><span class="p">]</span>
+<span class="p">[</span><span class="n">SYS</span><span class="p">]</span><span class="w"> </span><span class="n">Disconnection</span><span class="w"> </span><span class="n">Success</span>
+
+<span class="c1">// server</span>
+<span class="p">[</span><span class="n">SRV</span><span class="p">]</span><span class="w"> </span><span class="n">Client</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="n">requested</span><span class="w"> </span><span class="n">disconnect</span><span class="p">.</span>
+<span class="p">[</span><span class="n">SRV</span><span class="p">]</span><span class="w"> </span><span class="n">Client</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="n">Disconnect</span><span class="w"> </span><span class="n">Successfully</span><span class="p">.</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

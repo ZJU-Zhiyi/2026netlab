@@ -2,18 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://zju-zhiyi.github.io/2026netlab/</loc>
-         <lastmod>2026-10-30</lastmod>
+         <lastmod>2026-11-02</lastmod>
     </url>
     <url>
          <loc>https://zju-zhiyi.github.io/2026netlab/lab1/</loc>
-         <lastmod>2026-10-30</lastmod>
+         <lastmod>2026-11-02</lastmod>
     </url>
     <url>
          <loc>https://zju-zhiyi.github.io/2026netlab/lab2/</loc>
-         <lastmod>2026-10-30</lastmod>
+         <lastmod>2026-11-02</lastmod>
     </url>
     <url>
          <loc>https://zju-zhiyi.github.io/2026netlab/lab3/</loc>
-         <lastmod>2026-10-30</lastmod>
+         <lastmod>2026-11-02</lastmod>
+    </url>
+    <url>
+         <loc>https://zju-zhiyi.github.io/2026netlab/lab4/</loc>
+         <lastmod>2026-11-02</lastmod>
+    </url>
+    <url>
+         <loc>https://zju-zhiyi.github.io/2026netlab/lab6/</loc>
+         <lastmod>2026-11-02</lastmod>
     </url>
 </urlset>
