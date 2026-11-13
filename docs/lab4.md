@@ -30,7 +30,7 @@ IP 负责在网络之间传输数据报，但不保证数据一定到达、按�
 
 我们主要介绍本次实验涉及到的部分：
 
-- **序列号（Sequence Number）**：表示该报文段序列空间的起始位置。若置位 SYN，SYN 占用该位置，payload 从下一个序列号开始；SYN 和 FIN 各占用一个序列号空间。每个传输方向都有一个初始序列号（ISN）。
+- **序列号/序号（Sequence Number）**：表示该报文段序列空间的起始位置。若置位 SYN，SYN 占用该位置，payload 从下一个序列号开始；SYN 和 FIN 各占用一个序列号空间。每个传输方向都有一个初始序列号（ISN）。
 - **确认号（Acknowledgment Number）**：表示接收方累计确认后，期望收到的下一个序列号。
 - **SYN**：置 1 表示该报文段用于同步初始序列号，并占用一个序列号空间。
 - **FIN**：置 1 表示发送方结束字节流，并占用一个序列号空间。
@@ -69,7 +69,7 @@ IP 负责在网络之间传输数据报，但不保证数据一定到达、按�
     - 序列号（seqno）：相对于 ISN 的 32 位循环序列号，SYN、数据字节和 FIN 都占用序列号空间。
     - 绝对序列号（absolute seqno）：从 0 开始的 64 位非循环序列号，包含 SYN、数据字节和 FIN。
     - 流索引（stream index）：从 0 开始的 64 位非循环索引，只表示应用数据字节，不包含 SYN 和 FIN。
-
+    
     <img src="../assets/lab4/seqno.png" alt="TCP 序列号、绝对序列号和流索引的对应关系" style="display:block; margin:0 auto; width:80%; height:auto; "/>
 
 你需要实现 `libsponge/wrapping_integers.hh` 和 `libsponge/wrapping_integers.cc` 中的两个方法：

@@ -14,6 +14,8 @@ nav:
   - Lab2: lab2.md
   - Lab3: lab3.md
   - Lab4: lab4.md
+  - 选做1: 二层交换机.md
+  - 选做2: 三层交换机.md
 
 markdown_extensions:
   - attr_list
