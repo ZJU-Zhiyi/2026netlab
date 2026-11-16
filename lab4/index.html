@@ -11,6 +11,8 @@
         <link rel="prev" href="../lab3/">
       
       
+        <link rel="next" href="../%E4%BA%8C%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA/">
+      
       
         
       
@@ -491,6 +493,60 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BA%8C%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    选做1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    选做2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -669,7 +725,7 @@
 <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/lab4/tcpheader.png" data-desc-position="bottom"><img src="../assets/lab4/tcpheader.png" alt="TCP 报文段首部与 IP 数据报封装关系" style="display:block; margin:0 auto; width:80%; height:auto; "></a></p>
 <p>我们主要介绍本次实验涉及到的部分：</p>
 <ul>
-<li><strong>序列号（Sequence Number）</strong>：表示该报文段序列空间的起始位置。若置位 SYN，SYN 占用该位置，payload 从下一个序列号开始；SYN 和 FIN 各占用一个序列号空间。每个传输方向都有一个初始序列号（ISN）。</li>
+<li><strong>序列号/序号（Sequence Number）</strong>：表示该报文段序列空间的起始位置。若置位 SYN，SYN 占用该位置，payload 从下一个序列号开始；SYN 和 FIN 各占用一个序列号空间。每个传输方向都有一个初始序列号（ISN）。</li>
 <li><strong>确认号（Acknowledgment Number）</strong>：表示接收方累计确认后，期望收到的下一个序列号。</li>
 <li><strong>SYN</strong>：置 1 表示该报文段用于同步初始序列号，并占用一个序列号空间。</li>
 <li><strong>FIN</strong>：置 1 表示发送方结束字节流，并占用一个序列号空间。</li>

@@ -1,0 +1,1083 @@
+<!DOCTYPE html><html lang="zh" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://zju-zhiyi.github.io/2026netlab/%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA/">
+      
+      
+        <link rel="prev" href="../%E4%BA%8C%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>选做2 - 2026 计算机网络实验文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="2026 计算机网络实验文档" class="md-header__button md-logo" aria-label="2026 计算机网络实验文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            2026 计算机网络实验文档
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              选做2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="2026 计算机网络实验文档" class="md-nav__button md-logo" aria-label="2026 计算机网络实验文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    2026 计算机网络实验文档
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    主页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BA%8C%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    选做1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    选做2
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    选做2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 实验目标
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 环境与地址规划
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 环境与地址规划">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 地址规划
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 第一阶段：路由器单臂路由
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 第一阶段：路由器单臂路由">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 建立拓扑
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-s1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 配置 S1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-r1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 配置 R1 子接口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-pc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 配置 PC 并验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 第二阶段：三层交换机路由
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 第二阶段：三层交换机路由">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 调整拓扑
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-s1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 复用 S1 配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-s2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 配置 S2 三层交换机
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-pc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 配置 PC 并验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 实验目标
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 环境与地址规划
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 环境与地址规划">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 地址规划
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 第一阶段：路由器单臂路由
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 第一阶段：路由器单臂路由">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 建立拓扑
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-s1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 配置 S1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-r1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 配置 R1 子接口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-pc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 配置 PC 并验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 第二阶段：三层交换机路由
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 第二阶段：三层交换机路由">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 调整拓扑
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-s1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 复用 S1 配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-s2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 配置 S2 三层交换机
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-pc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 配置 PC 并验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">选做实验：使用三层交换机组网</h1>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>本实验为选做内容，不计入课程成绩(无附加分)，同学们可以根据自身情况自行探索。</p>
+<p>实验模板及工具网站：http://10.214.0.253/network/download/（本实验的实验模板对应网站上Lab3）</p>
+</div>
+<p>本实验分别使用路由器单臂路由和三层交换机 SVI，实现 VLAN 10 与 VLAN 20 之间的 IP 转发。两种方案使用相同的网关地址规划，便于比较结果。</p>
+<h2 id="1">1 实验目标</h2>
+<ul>
+<li>配置 VLAN、Access 端口和 Trunk 链路。</li>
+<li>使用路由器子接口和 802.1Q 标签实现 VLAN 间路由。</li>
+<li>使用三层交换机 SVI 和 IP routing 实现 VLAN 间路由。</li>
+<li>验证网关可达、同 VLAN 跨交换机通信和跨 VLAN 通信。</li>
+<li>根据接口状态、Trunk 状态和路由表排查连通性问题。</li>
+</ul>
+<h2 id="2">2 环境与地址规划</h2>
+<p>准备一台二层交换机 S1、一台支持 802.1Q 子接口的路由器 R1、一台支持 SVI 路由的三层交换机 S2，以及最多四台测试 PC。第一阶段使用 S1、R1、PC1、PC2；第二阶段移除 R1，加入 S2、PC3、PC4。可使用课程提供的实体设备或支持所需功能的隔离模拟环境。Console 连接和 PC 静态地址设置按操作系统与设备说明完成。</p>
+<p>实验统一使用以下地址规划。两个 VLAN 属于不同子网，各自的网关均为 <code>.1</code> 地址；单臂路由阶段由 R1 子接口提供网关，三层交换阶段由 S2 的 SVI 提供网关。</p>
+<h3 id="21">2.1 地址规划</h3>
+<table>
+<thead>
+<tr>
+<th>设备</th>
+<th>阶段</th>
+<th>接口</th>
+<th style="text-align: right;">VLAN</th>
+<th>IPv4 地址/掩码</th>
+<th>默认网关</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PC1</td>
+<td>两阶段</td>
+<td>S1 Fa0/1</td>
+<td style="text-align: right;">10</td>
+<td>10.0.10.11/24</td>
+<td>10.0.10.1</td>
+</tr>
+<tr>
+<td>PC2</td>
+<td>两阶段</td>
+<td>S1 Fa0/2</td>
+<td style="text-align: right;">20</td>
+<td>10.0.20.12/24</td>
+<td>10.0.20.1</td>
+</tr>
+<tr>
+<td>R1 子接口</td>
+<td>第一阶段</td>
+<td>Gi0/0.10</td>
+<td style="text-align: right;">10</td>
+<td>10.0.10.1/24</td>
+<td>不适用</td>
+</tr>
+<tr>
+<td>R1 子接口</td>
+<td>第一阶段</td>
+<td>Gi0/0.20</td>
+<td style="text-align: right;">20</td>
+<td>10.0.20.1/24</td>
+<td>不适用</td>
+</tr>
+<tr>
+<td>PC3</td>
+<td>第二阶段</td>
+<td>S2 Fa0/1</td>
+<td style="text-align: right;">10</td>
+<td>10.0.10.13/24</td>
+<td>10.0.10.1</td>
+</tr>
+<tr>
+<td>PC4</td>
+<td>第二阶段</td>
+<td>S2 Fa0/2</td>
+<td style="text-align: right;">20</td>
+<td>10.0.20.14/24</td>
+<td>10.0.20.1</td>
+</tr>
+<tr>
+<td>S2 SVI</td>
+<td>第二阶段</td>
+<td>VLAN 10</td>
+<td style="text-align: right;">10</td>
+<td>10.0.10.1/24</td>
+<td>不适用</td>
+</tr>
+<tr>
+<td>S2 SVI</td>
+<td>第二阶段</td>
+<td>VLAN 20</td>
+<td style="text-align: right;">20</td>
+<td>10.0.20.1/24</td>
+<td>不适用</td>
+</tr>
+</tbody>
+</table>
+<p>本指南命令按 Cisco IOS/Catalyst 风格书写，假设 S1 的 Fa0/1、Fa0/2 接入 PC，Gi0/1 为上联；S2 的 Fa0/1、Fa0/2 接入 PC，Gi0/1 连接 S1；R1 的 Gi0/0 连接 S1。若实际接口不同，先替换所有命令中的接口名称。设备型号、IOS 版本及模拟模块对 Trunk、SVI 和路由功能的支持可能不同。不要在共享或生产网络上更改配置。</p>
+<p><strong>实验记录：</strong>填写本组设备型号、阶段一和阶段二的实际拓扑、接口对应关系及与地址规划不一致之处；后续记录均以本组实际端口和配置为准。</p>
+<h2 id="3">3 第一阶段：路由器单臂路由</h2>
+<h3 id="31">3.1 建立拓扑</h3>
+<p>连接 PC1、PC2 和 R1 到二层交换机 S1。PC1、PC2 分别接入 VLAN 10、20；S1 与 R1 之间用一条 Trunk 链路。R1 的 Gi0/0 物理接口划分为 Gi0/0.10 和 Gi0/0.20 两个子接口，分别作为两个 VLAN 的网关。</p>
+<p>通过 Console 登录 S1 和 R1。若提示符为 <code>设备名&gt;</code>，先输入 <code>enable</code>，按要求认证并进入提示符为 <code>设备名#</code> 的特权 EXEC 模式；后续配置命令均从该模式开始执行。修改配置前，执行 <code>show running-config</code>，将本实验涉及的原有配置输出保存到本组记录中，并记录设备和接口的初始状态。第二阶段配置 S2 前也需完成同样的检查与备份。</p>
+<h3 id="32-s1">3.2 配置 S1</h3>
+<p>创建 VLAN 10、20，配置连接 PC 的 Access 端口，并把连接 R1 的 Gi0/1 配置为允许两个 VLAN 的 Trunk：</p>
+<div class="highlight"><pre><span></span><code>configure terminal
+vlan 10
+ name VLAN10
+vlan 20
+ name VLAN20
+interface fastEthernet 0/1
+ switchport mode access
+ switchport access vlan 10
+ no shutdown
+interface fastEthernet 0/2
+ switchport mode access
+ switchport access vlan 20
+ no shutdown
+interface gigabitEthernet 0/1
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20
+ no shutdown
+end
+show vlan brief
+show interfaces trunk
+</code></pre></div>
+<p>确认 PC1、PC2 端口分别属于 VLAN 10、20，并检查 Gi0/1 已配置为 Trunk、允许 VLAN 10、20。此时 R1 接口可能尚未启用，Trunk 的实际运行状态在 3.3 节完成 R1 配置后再确认。部分型号需先指定 <code>switchport trunk encapsulation dot1q</code>，再执行 <code>switchport mode trunk</code>；若设备不支持前一条命令，按设备手册确认默认封装和配置方式。</p>
+<p><strong>实验记录：</strong>保存 <code>show vlan brief</code> 的关键输出，注明 PC 接入口 VLAN 和已配置的 Trunk 允许列表；Trunk 运行状态在下一节记录。</p>
+<h3 id="33-r1">3.3 配置 R1 子接口</h3>
+<p>R1 的父接口不配置 IP 地址；两个网关地址配置在子接口上。子接口编号用于区分逻辑接口，实际 VLAN 由 <code>encapsulation dot1Q</code> 后的 VLAN ID 指定：</p>
+<div class="highlight"><pre><span></span><code>configure terminal
+interface gigabitEthernet 0/0
+ no ip address
+ no shutdown
+interface gigabitEthernet 0/0.10
+ encapsulation dot1Q 10
+ ip address 10.0.10.1 255.255.255.0
+interface gigabitEthernet 0/0.20
+ encapsulation dot1Q 20
+ ip address 10.0.20.1 255.255.255.0
+end
+show ip interface brief
+show ip route
+</code></pre></div>
+<p>确认物理接口和子接口处于可用状态，路由表包含 <code>10.0.10.0/24</code>、<code>10.0.20.0/24</code> 两条直连路由。若接口名或命令不受设备支持，先查阅该型号帮助，不要照搬不兼容配置。</p>
+<p>回到 S1 执行 <code>show interfaces trunk</code>，确认 Gi0/1 已处于 Trunk 状态，且 VLAN 10、20 均可通过。</p>
+<p><strong>实验记录：</strong>记录 R1 物理接口、子接口状态及两条直连路由，保存 S1 的 Trunk 运行状态；若状态或路由与预期不符，先记录现象再排查。</p>
+<h3 id="34-pc">3.4 配置 PC 并验证</h3>
+<p>按第一阶段地址表配置 PC1、PC2 的地址、/24 掩码和默认网关。依次进行以下测试并记录结果：</p>
+<ol>
+<li>PC1 ping <code>10.0.10.1</code>，PC2 ping <code>10.0.20.1</code>，验证各自网关可达。</li>
+<li>PC1 ping PC2 的 <code>10.0.20.12</code>，验证 R1 能在 VLAN 10、20 之间转发。</li>
+</ol>
+<p>成功时，PC1 发往 PC2 的流量先到达 VLAN 10 网关；R1 根据路由表从 VLAN 20 子接口转发，再由 S1 送至 PC2。Trunk 携带带标签的 VLAN 流量，本身不执行 IP 路由。</p>
+<p><strong>实验记录：</strong>逐项填写两台 PC 到网关及跨 VLAN ping 的预期和实测结果，并记录未达预期时的排查步骤。若排查中修改了配置，更新上一节对应的状态记录。</p>
+<h2 id="4">4 第二阶段：三层交换机路由</h2>
+<h3 id="41">4.1 调整拓扑</h3>
+<p>完成并记录第一阶段后，断开并移除 R1，避免 VLAN 10、20 出现重复的 <code>.1</code> 网关地址。保留 S1 和 PC1、PC2；加入 S2、PC3、PC4。PC1、PC3 属于 VLAN 10，PC2、PC4 属于 VLAN 20；S1 与 S2 之间使用一条 Trunk。</p>
+<p><strong>实验记录：</strong>确认 R1 已断开，记录阶段转换时保留/移除的设备与链路，并核对当前网络中 <code>.1</code> 网关的唯一归属。</p>
+<h3 id="42-s1">4.2 复用 S1 配置</h3>
+<p>保留第一阶段在 S1 上配置的 VLAN 10、20 和 PC Access 端口。断开 R1 后，将原上联 Gi0/1 改接到 S2，并检查本端保留的 Trunk 配置允许 VLAN 10、20。本阶段不必重复配置 S1 的 PC 接入口；两端 Trunk 的运行状态在 4.3 节完成 S2 配置后再确认。</p>
+<p><strong>实验记录：</strong>记录 S1 复用的 VLAN、接入口配置及上联对应关系；若为适配设备调整了配置，注明调整内容。</p>
+<h3 id="43-s2">4.3 配置 S2 三层交换机</h3>
+<p>在 S2 创建 VLAN 10、20，将 PC3、PC4 端口配置为对应的 Access VLAN；将与 S1 相连的 Gi0/1 配置为 Trunk；创建两个 SVI 并启用 IP 路由：</p>
+<div class="highlight"><pre><span></span><code>configure terminal
+vlan 10
+ name VLAN10
+vlan 20
+ name VLAN20
+interface fastEthernet 0/1
+ switchport mode access
+ switchport access vlan 10
+ no shutdown
+interface fastEthernet 0/2
+ switchport mode access
+ switchport access vlan 20
+ no shutdown
+interface gigabitEthernet 0/1
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20
+ no shutdown
+interface vlan 10
+ ip address 10.0.10.1 255.255.255.0
+ no shutdown
+interface vlan 20
+ ip address 10.0.20.1 255.255.255.0
+ no shutdown
+ip routing
+end
+show vlan brief
+show interfaces trunk
+show ip interface brief
+show ip route
+</code></pre></div>
+<p>本阶段要求设备支持通过 SVI 执行 VLAN 间路由，并支持启用 <code>ip routing</code>。仅支持管理 SVI 的二层交换机不能完成本阶段的路由任务。SVI 要达到 up/up，VLAN 必须存在，SVI 不能被关闭，且 VLAN 中通常需至少有一个活动并处于 STP 转发状态的二层端口。若设备不支持所需路由功能，应使用课程指定的三层交换设备。</p>
+<p>完成 S2 配置后，在 S1、S2 上分别执行 <code>show interfaces trunk</code>，确认互联端口均处于 Trunk 状态，并允许 VLAN 10、20。</p>
+<p><strong>实验记录：</strong>记录 S2 的两个 SVI 状态和地址、路由表中的直连网段，以及两端 Trunk 的运行状态；若状态与预期不符，记录排查结果。</p>
+<h3 id="44-pc">4.4 配置 PC 并验证</h3>
+<p>保持 PC1、PC2 的地址和网关不变。新增 PC3：<code>10.0.10.13/24</code>、网关 <code>10.0.10.1</code>；PC4：<code>10.0.20.14/24</code>、网关 <code>10.0.20.1</code>。</p>
+<p>网关 IP 沿用第一阶段的地址，但提供网关的设备已从 R1 更换为 S2，PC1、PC2 可能仍缓存原网关的 MAC 地址。测试前检查并清除两台 PC 各自网关的旧 ARP/邻居条目，使主机重新解析当前网关的 MAC 地址。Windows 可在管理员终端用 <code>arp -a</code> 查看，PC1 执行 <code>arp -d 10.0.10.1</code>，PC2 执行 <code>arp -d 10.0.20.1</code>；Linux 可用 <code>ip neigh</code> 查看，并执行 <code>sudo ip neigh del &lt;网关地址&gt; dev &lt;网卡名&gt;</code> 删除对应条目。缓存中没有对应条目时可直接继续。</p>
+<p>确认 S2 两个 SVI 为 up/up，路由表包含两个直连子网后，按顺序测试：</p>
+<ol>
+<li>四台 PC 分别 ping 自己的默认网关。</li>
+<li>测试同 VLAN、跨交换机通信：PC1 ping PC3，PC2 ping PC4。</li>
+<li>测试跨 VLAN 通信：PC1 ping PC4，PC2 ping PC3。</li>
+</ol>
+<p>可选对照：在隔离环境中临时从 S1-S2 Trunk 的 allowed VLAN 列表移除一个 VLAN，观察该 VLAN 的远端主机无法到达网关或同 VLAN 对端；随后立即恢复并重测。不要把临时错误配置留在最终状态。</p>
+<p><strong>实验记录：</strong>分别填写第二阶段的网关、同 VLAN 跨交换机和跨 VLAN ping 结果，注明每项涉及的设备与地址，并记录网关 ARP/邻居条目的检查及更新情况。若完成可选对照，记录移除/恢复 VLAN 前后的现象；若排查中修改了配置，更新上一节对应的状态记录。</p>
+<div class="admonition note">
+<p class="admonition-title">故障排查与恢复</p>
+<ul>
+<li>PC ping 不通网关：核对 PC 的 IP、掩码、网关、Access VLAN、物理链路以及路由器子接口/SVI 状态。</li>
+<li>同 VLAN 跨交换机不通：确认两端都创建该 VLAN，Trunk 两端均 up 且允许该 VLAN，STP 端口处于 Forwarding。</li>
+<li>SVI 为 down/down：检查 VLAN 是否存在、SVI 是否 shutdown，以及 VLAN 中是否有活动且处于 STP 转发状态的端口。</li>
+<li>网关可达但跨 VLAN 不通：检查子接口/SVI 地址、路由器或三层交换机是否启用转发，并查看路由表。</li>
+<li>ping 起始有丢包：检查 ARP 邻居解析、接口状态和 STP 收敛；确认主机防火墙允许实验网中的 ICMP。不要因单次失败就直接关闭整台防火墙。</li>
+</ul>
+</div>
+<p>实验结束后恢复开始前记录的配置，移除测试时创建的临时路由器或临时设置，确认网络中只有当前方案指定的 VLAN 网关，避免两个设备同时使用同一网关地址。</p>
+<div class="admonition note">
+<p class="admonition-title">说明</p>
+<p>不同平台的命令可能不同，可参考设备对应软件版本的 Cisco 指南：<a href="https://www.cisco.com/c/en/us/support/docs/lan-switching/inter-vlan-routing/41260-189.html">Catalyst VLAN 间路由配置</a>。</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
